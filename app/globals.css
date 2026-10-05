@@ -9,13 +9,15 @@
   --gold: #b8924a;
 }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 body { background: var(--cream); color: var(--cocoa); font-family: var(--font-sans), system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
 :focus-visible { outline: 2px solid #8a6a2a; outline-offset: 3px; border-radius: 6px; }
 ::selection { background: #f2bcc8; color: #3b2418; }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
@@ -27,7 +29,10 @@ body { background: var(--cream); color: var(--cocoa); font-family: var(--font-sa
   .h-section { @apply font-serif text-3xl font-medium leading-tight tracking-tight sm:text-4xl lg:text-[2.75rem]; }
   .lead { @apply text-base leading-relaxed text-cocoa-600 sm:text-lg; }
 
-  .btn { @apply inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold transition duration-300 disabled:cursor-not-allowed disabled:opacity-50 active:scale-[0.98]; }
+  .btn { @apply relative isolate inline-flex min-h-[46px] items-center justify-center gap-2 overflow-hidden rounded-full px-6 py-2.5 text-sm font-semibold transition duration-300 ease-out hover:-translate-y-0.5 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 active:translate-y-0 active:scale-[0.97]; }
+  .btn::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.28) 50%, transparent 70%); transform: translateX(-120%); transition: transform 0.8s ease; }
+  .btn:hover::after { transform: translateX(120%); }
+  .btn-outline::after { background: linear-gradient(110deg, transparent 30%, rgba(184,146,74,0.25) 50%, transparent 70%); }
   .btn-primary { @apply btn bg-cocoa text-cream hover:bg-cocoa-700 hover:shadow-lift; }
   .btn-blush { @apply btn bg-blush-700 text-white hover:bg-blush-600 hover:shadow-lift; }
   .btn-outline { @apply btn border border-cocoa/25 bg-transparent text-cocoa hover:border-cocoa hover:bg-cocoa hover:text-cream; }
@@ -36,10 +41,16 @@ body { background: var(--cream); color: var(--cocoa); font-family: var(--font-sa
 
   .label { @apply mb-1.5 block text-sm font-medium text-cocoa; }
   .input { @apply w-full rounded-xl border border-cocoa/20 bg-white px-4 py-3 text-[15px] text-cocoa placeholder:text-cocoa-400 transition focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30; }
+  select.input, .select-pill { appearance: none; -webkit-appearance: none; cursor: pointer; background-repeat: no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%233B2418' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E"); background-size: 1rem; background-position: right 1rem center; }
+  select.input { padding-right: 2.75rem; }
+  .select-pill { padding-right: 2rem !important; background-position: right 0.7rem center; background-size: 0.85rem; }
+  select.input:hover { border-color: rgba(59,36,24,0.45); }
+  select option { background: #fbf6ee; color: #3b2418; }
+  input[type="date"].input { min-height: 48px; cursor: pointer; }
   .input-error { @apply border-red-600 focus:border-red-600 focus:ring-red-200; }
   .field-error { @apply mt-1.5 text-[13px] font-medium text-red-700; }
 
-  .chip { @apply inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-cocoa/20 bg-white px-4 py-2 text-sm font-medium text-cocoa transition hover:border-cocoa; }
+  .chip { @apply inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-cocoa/20 bg-white px-4 py-2 text-sm font-medium text-cocoa transition duration-300 hover:-translate-y-0.5 hover:border-cocoa hover:shadow-soft active:scale-[0.97]; }
   .chip-on { @apply border-cocoa bg-cocoa text-cream hover:border-cocoa; }
   .card { @apply rounded-3xl border border-cocoa/10 bg-white shadow-soft; }
 }

@@ -70,3 +70,19 @@ export const WhatsAppIcon = ({ className = "h-5 w-5" }: { className?: string }) 
     <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.400-.9-.8-1.4-1.700-1.600-2-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.100c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.400 1 2.800 1.200 3c.1.2 2 3.100 4.900 4.300.7.3 1.200.5 1.600.6.7.2 1.300.2 1.800.1.500-.1 1.700-.7 1.900-1.400.2-.7.2-1.200.2-1.400-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.500 15.200L2 22l4.900-1.500A10 10 0 1012 2zm0 18.200c-1.500 0-2.900-.4-4.200-1.200l-.3-.2-2.900.9.9-2.800-.2-.3A8.200 8.200 0 1112 20.200z" />
   </svg>
 );
+
+export function PasswordInput({ id, value, onChange, invalid, className = "", ...rest }: { id: string; value: string; onChange: (v: string) => void; invalid?: boolean; className?: string } & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange" | "value" | "id" | "type">) {
+  const [show, setShow] = useState(false);
+  return (
+    <div className="relative">
+      <input {...rest} id={id} type={show ? "text" : "password"} value={value} onChange={(e) => onChange(e.target.value)} aria-invalid={invalid} className={`input pr-12 ${invalid ? "input-error" : ""} ${className}`} />
+      <button type="button" onClick={() => setShow((s) => !s)} aria-pressed={show} aria-label={show ? "Hide password" : "Show password"} className="absolute right-1.5 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full text-cocoa-500 transition hover:bg-cocoa/5 hover:text-cocoa">
+        {show ? (
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M3 3l18 18M10.6 6.2A9.8 9.8 0 0112 6c5 0 8.500 4.200 9.500 6-.5.900-1.400 2.100-2.700 3.200M6.700 6.800C4.600 8.100 3.200 10 2.500 12c1 1.800 4.500 6 9.500 6 1.600 0 3-.4 4.200-1M9.900 9.900a3 3 0 004.200 4.200" /></svg>
+        ) : (
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M2.500 12C3.500 10 7 6 12 6s8.500 4 9.500 6c-1 2-4.500 6-9.500 6S3.500 14 2.500 12z" /><circle cx="12" cy="12" r="3" /></svg>
+        )}
+      </button>
+    </div>
+  );
+}

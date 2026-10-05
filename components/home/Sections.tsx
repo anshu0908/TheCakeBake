@@ -40,9 +40,9 @@ export function Hero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] shadow-lift">
             <SmartImage src={images.hero} alt="A rich chocolate celebration cake from The Cake Bake" priority sizes="(max-width: 1024px) 90vw, 520px" />
           </div>
-          <div className="absolute -bottom-5 -left-3 hidden w-40 rotate-[-4deg] overflow-hidden rounded-3xl border-4 border-cream shadow-lift sm:block sm:w-44">
+          <div data-parallax="28" className="absolute -bottom-5 -left-3 hidden sm:block"><div className="w-40 rotate-[-4deg] overflow-hidden rounded-3xl border-4 border-cream shadow-lift sm:w-44">
             <div className="relative aspect-square"><SmartImage src={images.heroSecondary} alt="Pastel celebration cake" sizes="180px" /></div>
-          </div>
+          </div></div>
           <div className="absolute -right-2 top-8 animate-[float_6s_ease-in-out_infinite] rounded-2xl motion-reduce:animate-none bg-white px-4 py-3 shadow-lift sm:-right-6">
             <Stars n={5} />
             <p className="mt-1 text-xs font-medium text-cocoa-600">“Exceeded expectations”</p>

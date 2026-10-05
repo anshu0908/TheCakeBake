@@ -45,7 +45,7 @@ export function OrdersTab() {
                   <td className="px-4 py-3 tabular-nums">{inr(o.total)}</td>
                   <td className="px-4 py-3">
                     <label className="sr-only" htmlFor={`st-${o.id}`}>Status for {o.id}</label>
-                    <select id={`st-${o.id}`} value={o.status} onChange={(e) => { setOrderStatus(o.id, e.target.value as OrderStatus); notify(`${o.id} marked ${statusSteps.find((s) => s.id === e.target.value)?.label}`); }} className={`rounded-full border-0 px-3 py-1.5 text-xs font-semibold ${statusColor[o.status]}`}>
+                    <select id={`st-${o.id}`} value={o.status} onChange={(e) => { setOrderStatus(o.id, e.target.value as OrderStatus); notify(`${o.id} marked ${statusSteps.find((s) => s.id === e.target.value)?.label}`); }} className={`select-pill rounded-full border-0 px-3 py-1.5 text-xs font-semibold ${statusColor[o.status]}`}>
                       {statusSteps.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
                     </select>
                   </td>
@@ -71,7 +71,7 @@ export function CustomTab() {
           <article key={c.id} className="card p-6">
             <div className="flex items-start justify-between gap-3">
               <div><p className="font-semibold">{c.id} · {c.name}</p><p className="text-sm text-cocoa-500">{fmtDateTime(c.createdAt)} · {c.phone}</p></div>
-              <select aria-label={`Status for ${c.id}`} value={c.status} onChange={(e) => setCustomStatus(c.id, e.target.value as typeof c.status)} className="rounded-full border border-cocoa/20 bg-white px-3 py-1.5 text-xs font-semibold capitalize">
+              <select aria-label={`Status for ${c.id}`} value={c.status} onChange={(e) => setCustomStatus(c.id, e.target.value as typeof c.status)} className="select-pill rounded-full border border-cocoa/20 bg-white px-3 py-1.5 text-xs font-semibold capitalize">
                 <option value="new">New</option><option value="quoted">Quoted</option><option value="confirmed">Confirmed</option>
               </select>
             </div>

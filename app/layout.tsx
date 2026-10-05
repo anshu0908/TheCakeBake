@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import { Toaster, WhatsAppIcon } from "@/components/ui";
 import { ScrollProgress } from "@/components/Premium";
+import SmoothScroll from "@/components/SmoothScroll";
 import { reviews } from "@/data/reviews";
 
 const serif = Playfair_Display({ subsets: ["latin"], variable: "--font-serif", display: "swap" });
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <StoreProvider>
           <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-cocoa focus:px-4 focus:py-2 focus:text-cream">Skip to content</a>
+          <SmoothScroll />
           <ScrollProgress />
           <Header />
           <main id="main">{children}</main>

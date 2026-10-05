@@ -6,7 +6,7 @@ import { useStore } from "@/lib/store";
 import { cartWhatsAppMessage, inr, isGurugramPin, istDate, slots, waLink } from "@/lib/utils";
 import { Coupon, Totals } from "@/components/CartSummary";
 import SmartImage from "@/components/SmartImage";
-import { PageHero, WhatsAppIcon } from "@/components/ui";
+import { PageHero, PasswordInput, WhatsAppIcon } from "@/components/ui";
 import type { Order } from "@/lib/types";
 
 type Pay = "UPI" | "Card" | "Cash on Delivery";
@@ -73,7 +73,9 @@ export default function CheckoutPage() {
   const field = (k: keyof typeof f, label: string, props: React.InputHTMLAttributes<HTMLInputElement> = {}, hint?: string) => (
     <div>
       <label htmlFor={k} className="label">{label}</label>
-      <input id={k} className={`input ${errors[k] ? "input-error" : ""}`} value={f[k]} onChange={set(k)} aria-invalid={!!errors[k]} aria-describedby={errors[k] ? `${k}-err` : undefined} {...props} />
+      {props.type === "password"
+        ? <PasswordInput id={k} value={f[k]} onChange={(v) => { setF((x) => ({ ...x, [k]: v })); setErrors((x) => ({ ...x, [k]: "" })); }} invalid={!!errors[k]} inputMode={props.inputMode} maxLength={props.maxLength} autoComplete={props.autoComplete} />
+        : <input id={k} className={`input ${errors[k] ? "input-error" : ""}`} value={f[k]} onChange={set(k)} aria-invalid={!!errors[k]} aria-describedby={errors[k] ? `${k}-err` : undefined} {...props} />}
       {hint && !errors[k] && <p className="mt-1 text-xs text-cocoa-500">{hint}</p>}
       {errors[k] && <p id={`${k}-err`} className="field-error">{errors[k]}</p>}
     </div>

@@ -6,6 +6,7 @@ import { site } from "@/config/site";
 import { useStore } from "@/lib/store";
 import { cartWhatsAppMessage, inr, waLink } from "@/lib/utils";
 import SmartImage from "./SmartImage";
+import { lockScroll } from "@/lib/scroll";
 import { WhatsAppIcon } from "./ui";
 
 export function QtyControl({ qty, onChange, small = false }: { qty: number; onChange: (n: number) => void; small?: boolean }) {
@@ -25,12 +26,11 @@ export default function CartDrawer() {
 
   useEffect(() => {
     if (!cartOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    lockScroll(true);
     closeRef.current?.focus();
     const esc = (e: KeyboardEvent) => e.key === "Escape" && setCartOpen(false);
     window.addEventListener("keydown", esc);
-    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", esc); };
+    return () => { lockScroll(false); window.removeEventListener("keydown", esc); };
   }, [cartOpen, setCartOpen]);
 
   const remaining = Math.max(0, site.freeDeliveryAbove - (totals.subtotal - totals.discount));
@@ -65,7 +65,7 @@ export default function CartDrawer() {
                   {remaining > 0 ? <p>Add <strong>{inr(remaining)}</strong> more for free delivery</p> : <p className="font-medium text-emerald-700">You've unlocked free delivery 🎉</p>}
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-cocoa/10"><div className="h-full rounded-full bg-gold transition-all duration-500" style={{ width: `${pct}%` }} /></div>
                 </div>
-                <ul className="flex-1 divide-y divide-cocoa/10 overflow-auto px-5">
+                <ul data-lenis-prevent className="flex-1 divide-y divide-cocoa/10 overflow-auto px-5">
                   {cart.map((i) => (
                     <li key={i.key} className="flex gap-4 py-4">
                       <span className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl"><SmartImage src={i.image} alt={i.name} sizes="80px" /></span>

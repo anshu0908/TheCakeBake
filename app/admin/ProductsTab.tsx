@@ -79,7 +79,7 @@ function Editor({ p, onClose, onSave }: { p: Product; onClose: () => void; onSav
   };
 
   return (
-    <div className="fixed inset-0 z-[60] grid place-items-center overflow-auto p-4" role="dialog" aria-modal="true" aria-label={isNew ? "Add product" : "Edit product"}>
+    <div data-lenis-prevent className="fixed inset-0 z-[60] grid place-items-center overflow-auto p-4" role="dialog" aria-modal="true" aria-label={isNew ? "Add product" : "Edit product"}>
       <button className="fixed inset-0 bg-cocoa/50" onClick={onClose} aria-label="Close" />
       <div className="card relative w-full max-w-xl space-y-4 bg-cream p-6">
         <h2 className="font-serif text-2xl">{isNew ? "Add product" : "Edit product"}</h2>

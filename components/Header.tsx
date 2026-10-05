@@ -8,6 +8,7 @@ import { useStore } from "@/lib/store";
 import { inr } from "@/lib/utils";
 import { OpenBadge, WhatsAppIcon } from "./ui";
 import SmartImage from "./SmartImage";
+import { lockScroll } from "@/lib/scroll";
 
 const nav = [
   { href: "/menu", label: "Cakes" },
@@ -21,9 +22,8 @@ const nav = [
 function useLock(on: boolean) {
   useEffect(() => {
     if (!on) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = prev; };
+    lockScroll(true);
+    return () => lockScroll(false);
   }, [on]);
 }
 
@@ -103,7 +103,7 @@ export default function Header() {
         {menu && (
           <motion.div className="fixed inset-0 z-50 xl:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <button className="absolute inset-0 bg-cocoa/50" onClick={() => setMenu(false)} aria-label="Close menu" />
-            <motion.nav aria-label="Mobile" className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-cream p-6 shadow-lift"
+            <motion.nav data-lenis-prevent aria-label="Mobile" className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-cream p-6 shadow-lift"
               initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "tween", duration: 0.3 }}>
               <div className="mb-6 flex items-center justify-between">
                 <span className="font-serif text-xl font-semibold">{site.name}</span>
@@ -160,7 +160,7 @@ function SearchOverlay({ onClose }: { onClose: () => void }) {
         {results.length === 0 ? (
           <p className="px-1 py-4 text-sm text-cocoa-600">No matches for “{q}”. Try “chocolate” or “rose”.</p>
         ) : (
-          <ul className="max-h-[50vh] space-y-1 overflow-auto">
+          <ul data-lenis-prevent className="max-h-[50vh] space-y-1 overflow-auto">
             {results.map((p) => (
               <li key={p.id}>
                 <Link href={`/menu/${p.slug}`} className="flex items-center gap-3 rounded-2xl p-2 hover:bg-white">

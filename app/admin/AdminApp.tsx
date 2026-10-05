@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { site } from "@/config/site";
 import { useStore } from "@/lib/store";
+import { PasswordInput } from "@/components/ui";
 import Dashboard from "./Dashboard";
 import { OrdersTab, CustomTab, EnquiriesTab } from "./Tabs";
 import ProductsTab from "./ProductsTab";
@@ -19,7 +20,7 @@ function Login() {
       <form onSubmit={(e) => { e.preventDefault(); if (!login(u, p)) setErr("Incorrect username or password."); }} className="card w-full max-w-sm space-y-5 p-8">
         <div className="text-center"><p className="eyebrow">Owner area</p><h1 className="font-serif text-3xl">Admin sign in</h1></div>
         <div><label htmlFor="u" className="label">Username</label><input id="u" className="input" value={u} onChange={(e) => { setU(e.target.value); setErr(""); }} autoComplete="username" /></div>
-        <div><label htmlFor="p" className="label">Password</label><input id="p" type="password" className={`input ${err ? "input-error" : ""}`} value={p} onChange={(e) => { setP(e.target.value); setErr(""); }} autoComplete="current-password" aria-invalid={!!err} />
+        <div><label htmlFor="p" className="label">Password</label><PasswordInput id="p" value={p} onChange={(v) => { setP(v); setErr(""); }} autoComplete="current-password" invalid={!!err} />
           {err && <p role="alert" className="field-error">{err}</p>}</div>
         <button className="btn-primary w-full">Sign in</button>
         <p className="rounded-xl bg-cream p-3 text-center text-xs text-cocoa-600">Demo login: <strong>{site.admin.user}</strong> / <strong>{site.admin.pass}</strong></p>
