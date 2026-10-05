@@ -52,17 +52,18 @@ export default function Header() {
           <span className="text-cream/85">Same-day &amp; scheduled delivery in Gurugram</span>
           <div className="flex items-center gap-5">
             <OpenBadge dark />
+            <Link href="/admin" className="font-semibold text-gold-300 hover:text-white">Admin demo →</Link>
             <a href={`tel:${site.phoneTel}`} className="hover:text-gold-300">{site.phoneDisplay}</a>
           </div>
         </div>
       </div>
       <header className={`sticky top-0 z-40 transition-all duration-300 ${scrolled ? "border-b border-cocoa/10 bg-cream/90 shadow-soft backdrop-blur-md" : "bg-cream"}`}>
         <div className="container-x flex h-16 items-center justify-between gap-4 sm:h-[72px]">
-          <Link href="/" className="flex flex-col leading-none" aria-label={`${site.name} home`}>
+          <Link href="/" className="flex shrink-0 flex-col leading-none whitespace-nowrap" aria-label={`${site.name} home`}>
             <span className="font-serif text-2xl font-semibold tracking-tight text-cocoa sm:text-[1.7rem]">{site.name}</span>
           </Link>
 
-          <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
+          <nav aria-label="Main" className="hidden items-center gap-6 whitespace-nowrap xl:flex">
             {nav.map((n) => (
               <Link key={n.href} href={n.href} aria-current={active(n.href) ? "page" : undefined}
                 className={`relative py-1 text-[15px] font-medium transition hover:text-blush-700 ${active(n.href) ? "text-blush-700" : "text-cocoa"}`}>
@@ -70,6 +71,9 @@ export default function Header() {
                 {active(n.href) && <span className="absolute inset-x-0 -bottom-0.5 h-px bg-blush-700" />}
               </Link>
             ))}
+            <Link href="/admin" className="inline-flex items-center gap-1.5 rounded-full border border-gold/60 bg-gold-300/20 px-3.5 py-1.5 text-[13px] font-semibold text-gold-700 transition hover:bg-gold-300/40">
+              <span aria-hidden>⚙</span> Admin Demo
+            </Link>
           </nav>
 
           <div className="flex items-center gap-1 sm:gap-2">
@@ -88,7 +92,7 @@ export default function Header() {
             <a href={site.whatsappUrl + "?text=" + encodeURIComponent("Hi The Cake Bake! I'd like to order a cake.")} target="_blank" rel="noopener noreferrer" className="btn-wa btn-sm ml-1 hidden md:inline-flex">
               <WhatsAppIcon className="h-4 w-4" /> Order on WhatsApp
             </a>
-            <button onClick={() => setMenu(true)} className="grid h-11 w-11 place-items-center rounded-full hover:bg-cocoa/5 lg:hidden" aria-label="Open menu" aria-expanded={menu}>
+            <button onClick={() => setMenu(true)} className="grid h-11 w-11 place-items-center rounded-full hover:bg-cocoa/5 xl:hidden" aria-label="Open menu" aria-expanded={menu}>
               <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
             </button>
           </div>
@@ -97,7 +101,7 @@ export default function Header() {
 
       <AnimatePresence>
         {menu && (
-          <motion.div className="fixed inset-0 z-50 lg:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <motion.div className="fixed inset-0 z-50 xl:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <button className="absolute inset-0 bg-cocoa/50" onClick={() => setMenu(false)} aria-label="Close menu" />
             <motion.nav aria-label="Mobile" className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-cream p-6 shadow-lift"
               initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "tween", duration: 0.3 }}>
@@ -108,7 +112,7 @@ export default function Header() {
                 </button>
               </div>
               <ul className="flex-1 space-y-1">
-                {[{ href: "/", label: "Home" }, ...nav, { href: "/track", label: "Track order" }].map((n) => (
+                {[{ href: "/", label: "Home" }, ...nav, { href: "/track", label: "Track order" }, { href: "/admin", label: "Admin Demo" }].map((n) => (
                   <li key={n.href}>
                     <Link href={n.href} className={`block rounded-xl px-3 py-3 font-serif text-2xl ${active(n.href) ? "text-blush-700" : "text-cocoa"}`}>{n.label}</Link>
                   </li>
