@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #fbf6ee;
+  --cocoa: #3b2418;
+  --blush: #d9778a;
+  --gold: #b8924a;
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { background: var(--cream); color: var(--cocoa); font-family: var(--font-sans), system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 2px solid #8a6a2a; outline-offset: 3px; border-radius: 6px; }
+::selection { background: #f2bcc8; color: #3b2418; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .section { @apply py-16 sm:py-24; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.22em] text-gold-700; }
+  .h-display { @apply font-serif font-medium leading-[1.08] tracking-tight text-cocoa; }
+  .h-section { @apply font-serif text-3xl font-medium leading-tight tracking-tight sm:text-4xl lg:text-[2.75rem]; }
+  .lead { @apply text-base leading-relaxed text-cocoa-600 sm:text-lg; }
+
+  .btn { @apply inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold transition duration-300 disabled:cursor-not-allowed disabled:opacity-50 active:scale-[0.98]; }
+  .btn-primary { @apply btn bg-cocoa text-cream hover:bg-cocoa-700 hover:shadow-lift; }
+  .btn-blush { @apply btn bg-blush-700 text-white hover:bg-blush-600 hover:shadow-lift; }
+  .btn-outline { @apply btn border border-cocoa/25 bg-transparent text-cocoa hover:border-cocoa hover:bg-cocoa hover:text-cream; }
+  .btn-wa { @apply btn bg-[#0E7A57] text-white hover:bg-[#0b6447] hover:shadow-lift; }
+  .btn-sm { @apply min-h-[38px] px-4 py-1.5 text-[13px]; }
+
+  .label { @apply mb-1.5 block text-sm font-medium text-cocoa; }
+  .input { @apply w-full rounded-xl border border-cocoa/20 bg-white px-4 py-3 text-[15px] text-cocoa placeholder:text-cocoa-400 transition focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30; }
+  .input-error { @apply border-red-600 focus:border-red-600 focus:ring-red-200; }
+  .field-error { @apply mt-1.5 text-[13px] font-medium text-red-700; }
+
+  .chip { @apply inline-flex min-h-[40px] items-center gap-1.5 rounded-full border border-cocoa/20 bg-white px-4 py-2 text-sm font-medium text-cocoa transition hover:border-cocoa; }
+  .chip-on { @apply border-cocoa bg-cocoa text-cream hover:border-cocoa; }
+  .card { @apply rounded-3xl border border-cocoa/10 bg-white shadow-soft; }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
