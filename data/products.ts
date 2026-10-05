@@ -16,7 +16,7 @@ const make = (p: P, extra: string[]): Product => ({
   inStock: true,
   messageOnCake: p.category === "cakes",
   ...p,
-  gallery: [p.image, ...extra],
+  gallery: [p.image, ...extra.filter((x) => x !== p.image)],
 });
 
 const g = img.gallery;
@@ -81,5 +81,5 @@ export const seedProducts: Product[] = [
     category: "hampers", image: img.products.cupcakeBox, sizes: box(["Box of 6", "Box of 12"], [599, 1149]), tags: [], eggless: true, popularity: 71 }, [g[1], g[5]]),
   make({ id: "p20", slug: "festive-sweet-hamper", name: "Festive Sweet Hamper", short: "Dry cake, brownies and macarons for festive gifting.",
     description: "A festive assortment: dry fruit cake, brownies and macarons. Ideal for Diwali, corporate gifting and family visits.",
-    category: "hampers", image: img.products.macarons, sizes: box(["Classic", "Premium", "Luxe"], [1499, 2299, 3499]), tags: ["New"], eggless: false, popularity: 66 }, [g[6], g[7]]),
+    category: "hampers", image: img.products.festive, sizes: box(["Classic", "Premium", "Luxe"], [1499, 2299, 3499]), tags: ["New"], eggless: false, popularity: 66 }, [g[6], g[7]]),
 ];
