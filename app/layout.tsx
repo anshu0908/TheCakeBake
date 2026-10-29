@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Playfair_Display } from "next/font/google";
+import { DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 import { site } from "@/config/site";
 import { StoreProvider } from "@/lib/store";
@@ -11,7 +11,8 @@ import { ScrollProgress } from "@/components/Premium";
 import SmoothScroll from "@/components/SmoothScroll";
 import { reviews } from "@/data/reviews";
 
-const serif = Playfair_Display({ subsets: ["latin"], variable: "--font-serif", display: "swap" });
+// Fraunces with its SOFT axis: rounded terminals that sit beside the logo's hand lettering without imitating it.
+const serif = Fraunces({ subsets: ["latin"], variable: "--font-serif", display: "swap", axes: ["SOFT", "WONK", "opsz"] });
 const sans = DM_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 
 const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://the-cake-bake-demo.vercel.app";
@@ -37,6 +38,7 @@ const jsonLd = {
   url: site.url,
   telephone: site.phoneTel,
   image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=75",
+  logo: `${base}/brand/logo.png`,
   priceRange: "₹₹",
   address: {
     "@type": "PostalAddress",
@@ -60,7 +62,10 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-IN" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en-IN" className={`${serif.variable} ${sans.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <StoreProvider>
@@ -73,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CartDrawer />
           <Toaster />
           <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"
-            className="fixed bottom-5 right-4 z-30 grid h-14 w-14 place-items-center rounded-full bg-[#0E7A57] text-white shadow-lift transition hover:scale-105 sm:right-6">
+            className="fixed bottom-5 right-4 z-30 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-white shadow-lift transition-colors duration-200 hover:bg-whatsapp-700 sm:right-6">
             <WhatsAppIcon className="h-7 w-7" />
           </a>
         </StoreProvider>

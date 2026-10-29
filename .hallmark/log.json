@@ -1,0 +1,78 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "site",
+  "shape": "catalogue",
+  "theme": "brand (logo)",
+  "axes": "light/soft-serif/chromatic-rose",
+  "hero": "Stage, tier-top photo",
+  "nav": "banner over a bar, logo mark",
+  "footer": "logo plate over links",
+  "imagery": "project photos (Unsplash placeholders)",
+  "photos": [],
+  "entry": "/",
+  "fingerprint": "stage/bento/grid/offer/index/steps/statement/rail/close",
+  "sections": [
+   "Hero",
+   "Care facts",
+   "Bento",
+   "Grid",
+   "Offer",
+   "Index band",
+   "Steps",
+   "Statement+Rail",
+   "Rail",
+   "Visit close",
+   "Footer"
+  ],
+  "signature": "the chocolate drip cake under the bowed top line of the logo tiers",
+  "waived": [
+   "44c",
+   "49b",
+   "79",
+   "81",
+   "83"
+  ],
+  "prompt": "second pass: brand-led from the supplied logo, Admin Login, developer credit",
+  "date": "2026-10-29"
+ },
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "site",
+  "shape": "catalogue",
+  "theme": "brand",
+  "axes": "light/high-contrast-serif/chromatic-rose",
+  "hero": "Stage",
+  "nav": "banner over a bar",
+  "footer": "mast",
+  "imagery": "project photos (Unsplash placeholders)",
+  "photos": [],
+  "entry": "/",
+  "fingerprint": "stage/bento/grid/offer/index/steps/statement/rail/close",
+  "sections": [
+   "Hero",
+   "Care facts",
+   "Bento",
+   "Grid",
+   "Offer",
+   "Index band",
+   "Steps",
+   "Statement+Rail",
+   "Rail",
+   "Visit close",
+   "Footer"
+  ],
+  "signature": "the chocolate drip cake set tall beside a roman headline",
+  "waived": [
+   "44c",
+   "49b",
+   "79",
+   "81",
+   "83"
+  ],
+  "prompt": "premium redesign of an existing Gurugram bakery site, brand palette kept",
+  "date": "2026-10-29"
+ }
+]

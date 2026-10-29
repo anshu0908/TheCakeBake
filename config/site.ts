@@ -31,7 +31,7 @@ export const site = {
   mapsDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=The+Cake+Bake+101L+Circular+Rd+Sector+7+Gurugram+122001",
   mapsEmbedUrl: "https://www.google.com/maps?q=The+Cake+Bake+101L+Circular+Rd+Sector+7+Gurugram+122001&output=embed",
   // Credit line in footer: easy to remove (set to "")
-  demoCredit: "Website demo by [Your Name]",
+  demoCredit: "Designed & developed by Anshu",
   // Demo admin credential (also in README)
   admin: { user: "admin", pass: "cakebake123" },
 };

@@ -22,7 +22,7 @@ export default function ReviewsClient() {
           <a href={site.googleReviewsUrl} target="_blank" rel="noopener noreferrer" className="btn-outline btn-sm mt-6 w-full">See all reviews on Google</a>
         </div>
         <div className="card bg-gradient-to-br from-white to-blush-50 p-6">
-          <p className="eyebrow">✦ Summary</p>
+          <p className="term">Summary</p>
           <p className="mt-3 text-sm leading-relaxed">{reviewSummary}</p>
         </div>
       </aside>

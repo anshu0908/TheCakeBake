@@ -31,7 +31,7 @@ export function OrdersTab() {
       {list.length === 0 ? <p className="card p-10 text-center text-cocoa-600">No orders match your search.</p> : (
         <div className="card overflow-x-auto">
           <table className="w-full min-w-[720px] text-left text-sm">
-            <thead className="border-b border-cocoa/10 text-xs uppercase tracking-wider text-cocoa-500"><tr>{["Order", "Customer", "Items", "Delivery", "Total", "Status"].map((h) => <th key={h} className="px-4 py-3 font-semibold">{h}</th>)}</tr></thead>
+            <thead className="border-b border-cocoa/10 text-[13px] text-cocoa-600"><tr>{["Order", "Customer", "Items", "Delivery", "Total", "Status"].map((h) => <th key={h} className="px-4 py-3 font-semibold">{h}</th>)}</tr></thead>
             <tbody className="divide-y divide-cocoa/10">
               {list.map((o) => (
                 <tr key={o.id} className="align-top">
@@ -55,7 +55,7 @@ export function OrdersTab() {
           </table>
         </div>
       )}
-      <p className="mt-3 text-xs text-cocoa-500">Changing a status here updates the customer's tracking page instantly.</p>
+      <p className="mt-3 text-xs text-cocoa-500">Changing a status here updates the customer’s tracking page instantly.</p>
     </div>
   );
 }

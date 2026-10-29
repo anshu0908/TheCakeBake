@@ -17,7 +17,7 @@ export default function OrderConfirmation({ params }: { params: Promise<{ id: st
     return (
       <div className="container-x py-32 text-center">
         <p className="font-serif text-4xl">Order not found</p>
-        <p className="lead mt-2">We couldn't find order {id} on this device.</p>
+        <p className="lead mt-2">We couldn’t find order {id} on this device.</p>
         <Link href="/track" className="btn-primary mt-6">Track an order</Link>
       </div>
     );
@@ -26,10 +26,9 @@ export default function OrderConfirmation({ params }: { params: Promise<{ id: st
     <section className="container-x max-w-3xl py-14 sm:py-20">
       <div className="text-center">
         <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-emerald-100 text-4xl text-emerald-700" aria-hidden>✓</div>
-        <p className="eyebrow mt-6">Order confirmed</p>
-        <h1 className="h-display mt-2 text-4xl sm:text-5xl">Thank you, {o.customer.name.split(" ")[0]}!</h1>
-        <p className="lead mt-3">Your order is in. We'll start baking soon.</p>
-        <p className="mx-auto mt-6 inline-block rounded-full border border-gold/40 bg-white px-6 py-3 font-semibold tracking-wide">Order ID: {o.id}</p>
+        <h1 className="h-display mx-auto mt-6 text-4xl sm:text-5xl">Order confirmed</h1>
+        <p className="lead mx-auto mt-3">Thank you, {o.customer.name.split(" ")[0]}. Your order is in. We’ll start baking soon.</p>
+        <p className="mx-auto mt-6 inline-block rounded-full border border-gold/40 bg-white px-6 py-3 font-semibold">Order ID: {o.id}</p>
       </div>
 
       <div className="card mt-10 space-y-6 p-6 sm:p-8">
@@ -49,9 +48,9 @@ export default function OrderConfirmation({ params }: { params: Promise<{ id: st
           <div className="flex justify-between pt-2 text-xl font-semibold"><dt>Total</dt><dd>{inr(o.total)}</dd></div>
         </dl>
         <div className="grid gap-4 border-t border-cocoa/10 pt-5 text-sm sm:grid-cols-3">
-          <div><p className="eyebrow mb-1">Deliver on</p><p>{fmtDate(o.deliveryDate)}<br />{o.slot}</p></div>
-          <div><p className="eyebrow mb-1">Address</p><p>{o.address}<br />{o.pincode}</p></div>
-          <div><p className="eyebrow mb-1">Payment</p><p>{o.payment}</p></div>
+          <div><p className="term mb-1">Deliver on</p><p>{fmtDate(o.deliveryDate)}<br />{o.slot}</p></div>
+          <div><p className="term mb-1">Address</p><p>{o.address}<br />{o.pincode}</p></div>
+          <div><p className="term mb-1">Payment</p><p>{o.payment}</p></div>
         </div>
       </div>
 

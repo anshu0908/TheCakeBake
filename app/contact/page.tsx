@@ -12,9 +12,9 @@ export default function Contact() {
       <section className="container-x grid gap-10 py-14 lg:grid-cols-2">
         <div className="space-y-6">
           <div className="card space-y-5 p-6 sm:p-8">
-            <div><p className="eyebrow mb-1">Address</p><address className="not-italic">{site.address.full}</address><p className="text-sm text-cocoa-500">Plus Code: {site.plusCode}</p></div>
-            <div><p className="eyebrow mb-1">Phone / WhatsApp</p><a className="text-lg font-semibold hover:text-blush-700" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a></div>
-            <div><p className="eyebrow mb-1">Hours</p><p>Open daily · closes {site.hours.closeLabel}</p><OpenBadge /></div>
+            <div><p className="term mb-1">Address</p><address className="not-italic">{site.address.full}</address><p className="text-sm text-cocoa-500">Plus Code: {site.plusCode}</p></div>
+            <div><p className="term mb-1">Phone / WhatsApp</p><a className="text-lg font-semibold hover:text-blush-700" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a></div>
+            <div><p className="term mb-1">Hours</p><p>Open daily · closes {site.hours.closeLabel}</p><OpenBadge /></div>
             <div className="flex flex-wrap gap-3">
               <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-wa"><WhatsAppIcon className="h-4 w-4" /> WhatsApp us</a>
               <a href={`tel:${site.phoneTel}`} className="btn-outline">Call now</a>

@@ -15,12 +15,15 @@ Push the repo to GitHub, then "Add New Project" on Vercel and import it. No sett
 
 ## Admin
 
-Go to `/admin` (linked in the footer). Demo login: **admin / cakebake123**. Session and all data live in the browser's `localStorage`. "Reset demo data" restores the seeded state.
+Click **Admin Login** in the header (or the mobile menu, or the footer), which opens `/admin/login`. Demo login: **admin / cakebake123**. Signing in opens the dashboard at `/admin`; signed-out visits to `/admin` go back to the login page. "Reset demo data" restores the seeded state.
+
+**This is not real authentication.** The credentials live in `config/site.ts` and are checked in the browser; the session and all dashboard data live in the browser's `localStorage`. Before production, replace it with server-side auth (for example Auth.js or a hosted provider), hashed credentials kept out of the client bundle, a database for orders and products, and middleware that protects `/admin` on the server.
 
 ## Where to change things
 
 | What | File |
 | --- | --- |
+| Logo files (`logo.png` full lockup, `logo-mark.png` without the tagline, the supplied original) | `public/brand/` |
 | Name, phone, WhatsApp, address, hours, delivery threshold and fee, coupon codes, social links, footer credit, admin login | `config/site.ts` |
 | Opening time (**placeholder 9:00 am**, not confirmed by the client) | `config/site.ts` → `hours.open` |
 | All images (swap for the owner's real photos) | `data/images.ts` |
@@ -51,3 +54,7 @@ Remove the footer credit by setting `demoCredit: ""` in `config/site.ts`.
 - The Hindi name was removed on request; the brand is shown in English only.
 - Opening hours use the Asia/Kolkata time zone for the live Open / Closed badge.
 - `/order/[id]` is the order confirmation page; `/track?id=…` tracks it.
+
+## Credits
+
+Designed & developed by Anshu.

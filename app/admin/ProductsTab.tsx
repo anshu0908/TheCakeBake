@@ -26,7 +26,7 @@ export default function ProductsTab() {
       </div>
       <div className="card overflow-x-auto">
         <table className="w-full min-w-[640px] text-left text-sm">
-          <thead className="border-b border-cocoa/10 text-xs uppercase tracking-wider text-cocoa-500"><tr>{["Product", "Category", "From", "In stock", ""].map((h) => <th key={h} className="px-4 py-3 font-semibold">{h}</th>)}</tr></thead>
+          <thead className="border-b border-cocoa/10 text-[13px] text-cocoa-600"><tr>{["Product", "Category", "From", "In stock", ""].map((h) => <th key={h} className="px-4 py-3 font-semibold">{h}</th>)}</tr></thead>
           <tbody className="divide-y divide-cocoa/10">
             {list.map((p) => (
               <tr key={p.id}>
@@ -34,8 +34,8 @@ export default function ProductsTab() {
                 <td className="px-4 py-3 capitalize">{categories.find((c) => c.id === p.category)?.label}</td>
                 <td className="px-4 py-3 tabular-nums">{inr(p.sizes[0]?.price ?? 0)}</td>
                 <td className="px-4 py-3">
-                  <button role="switch" aria-checked={p.inStock} aria-label={`In stock: ${p.name}`} onClick={() => { saveProduct({ ...p, inStock: !p.inStock }); notify(`${p.name} ${!p.inStock ? "in stock" : "sold out"}`); }} className={`relative h-6 w-11 rounded-full transition ${p.inStock ? "bg-emerald-600" : "bg-cocoa/25"}`}>
-                    <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${p.inStock ? "left-[22px]" : "left-0.5"}`} />
+                  <button role="switch" aria-checked={p.inStock} aria-label={`In stock: ${p.name}`} onClick={() => { saveProduct({ ...p, inStock: !p.inStock }); notify(`${p.name} ${!p.inStock ? "in stock" : "sold out"}`); }} className={`relative h-6 w-11 rounded-full transition-colors ${p.inStock ? "bg-emerald-600" : "bg-cocoa/25"}`}>
+                    <span className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${p.inStock ? "translate-x-5" : ""}`} />
                   </button>
                 </td>
                 <td className="whitespace-nowrap px-4 py-3 text-right">
@@ -90,9 +90,9 @@ function Editor({ p, onClose, onSave }: { p: Product; onClose: () => void; onSav
         <div><label htmlFor="pi" className="label">Image URL</label><input id="pi" className={`input ${err.image ? "input-error" : ""}`} value={f.image} onChange={(e) => set("image", e.target.value)} />{err.image && <p className="field-error">{err.image}</p>}</div>
         <div><label htmlFor="pz" className="label">Sizes and prices</label><textarea id="pz" rows={3} className={`input font-mono text-sm ${err.sizes ? "input-error" : ""}`} value={f.sizesText} onChange={(e) => set("sizesText", e.target.value)} />{err.sizes && <p className="field-error">{err.sizes}</p>}</div>
         <div className="flex flex-wrap gap-5 text-sm">
-          <label className="flex items-center gap-2"><input type="checkbox" className="h-4 w-4 accent-[#3b2418]" checked={f.eggless} onChange={(e) => set("eggless", e.target.checked)} />Eggless available</label>
-          <label className="flex items-center gap-2"><input type="checkbox" className="h-4 w-4 accent-[#3b2418]" checked={f.bestseller} onChange={(e) => set("bestseller", e.target.checked)} />Bestseller</label>
-          <label className="flex items-center gap-2"><input type="checkbox" className="h-4 w-4 accent-[#3b2418]" checked={f.inStock} onChange={(e) => set("inStock", e.target.checked)} />In stock</label>
+          <label className="flex items-center gap-2"><input type="checkbox" className="h-4 w-4 accent-cocoa" checked={f.eggless} onChange={(e) => set("eggless", e.target.checked)} />Eggless available</label>
+          <label className="flex items-center gap-2"><input type="checkbox" className="h-4 w-4 accent-cocoa" checked={f.bestseller} onChange={(e) => set("bestseller", e.target.checked)} />Bestseller</label>
+          <label className="flex items-center gap-2"><input type="checkbox" className="h-4 w-4 accent-cocoa" checked={f.inStock} onChange={(e) => set("inStock", e.target.checked)} />In stock</label>
         </div>
         <div className="flex justify-end gap-3 pt-2"><button className="btn-outline" onClick={onClose}>Cancel</button><button className="btn-primary" onClick={save}>Save product</button></div>
       </div>

@@ -19,7 +19,7 @@ export default function EnquiryForm({ kind, placeholder, extra }: { kind: "gifti
     const er: Record<string, string> = {};
     if (f.name.trim().length < 2) er.name = "Please enter your name.";
     if (!/^[6-9]\d{9}$/.test(f.phone.replace(/\D/g, "").slice(-10))) er.phone = "Enter a valid 10-digit mobile number.";
-    if (f.email && !/^\S+@\S+\.\S+$/.test(f.email)) er.email = "That email doesn't look right.";
+    if (f.email && !/^\S+@\S+\.\S+$/.test(f.email)) er.email = "That email doesn’t look right.";
     if (f.details.trim().length < 10) er.details = "Please add a few more details (at least 10 characters).";
     setErrors(er);
     if (Object.keys(er).length) return;
@@ -36,7 +36,7 @@ export default function EnquiryForm({ kind, placeholder, extra }: { kind: "gifti
       <div className="card p-8 text-center" role="status">
         <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-100 text-3xl text-emerald-700" aria-hidden>✓</div>
         <h3 className="mt-4 font-serif text-2xl">Thank you, {f.name.split(" ")[0]}</h3>
-        <p className="lead mt-2">We've received your message and will get back to you shortly.</p>
+        <p className="lead mt-2">We’ve received your message and will get back to you shortly.</p>
         <a href={waLink(msg)} target="_blank" rel="noopener noreferrer" className="btn-wa mt-6"><WhatsAppIcon className="h-4 w-4" /> Also send on WhatsApp</a>
       </div>
     );

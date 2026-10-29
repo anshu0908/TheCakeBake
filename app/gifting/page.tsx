@@ -25,10 +25,9 @@ export default function Gifting() {
       <section className="section bg-cream-200/60">
         <div className="container-x grid items-start gap-12 lg:grid-cols-2">
           <div>
-            <p className="eyebrow mb-3">Corporate &amp; bulk</p>
-            <h2 className="h-section">Planning something bigger?</h2>
-            <p className="lead mt-4">Festive gifting, client hampers, team celebrations or wedding favours. Tell us the quantity, budget and date and we'll propose options.</p>
-            <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-[2rem] shadow-soft"><SmartImage src={images.gifting} alt="Gift boxes with ribbon" sizes="(max-width: 1024px) 100vw, 50vw" /></div>
+            <h2 className="h-section">Corporate &amp; bulk orders</h2>
+            <p className="lead mt-4">Planning something bigger? Festive gifting, client hampers, team celebrations or wedding favours. Tell us the quantity, budget and date and we’ll propose options.</p>
+            <div className="relative mt-8 aspect-[4/3] overflow-hidden rounded-card bg-cream-200"><SmartImage src={images.gifting} alt="Gift boxes with ribbon" sizes="(max-width: 1024px) 100vw, 50vw" /></div>
           </div>
           <EnquiryForm kind="gifting" placeholder="Quantity, budget, delivery date and any branding or personalisation…" extra={{ label: "Enquiry type", options: ["Festive gifting", "Corporate gifting", "Wedding favours", "Birthday hamper", "Other"] }} />
         </div>

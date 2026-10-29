@@ -54,13 +54,13 @@ export default function MenuClient() {
           <div className="relative flex-1">
             <label htmlFor="q" className="sr-only">Search menu</label>
             <input id="q" className="input pl-11" placeholder="Search the menu…" value={q} onChange={(e) => set({ q: e.target.value || null })} />
-            <svg viewBox="0 0 24 24" className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-cocoa-500" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.500-3.500" strokeLinecap="round" /></svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-cocoa-500" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.500-3.500" strokeLinecap="round" /></svg>
           </div>
           <label className="chip cursor-pointer select-none">
-            <input type="checkbox" className="h-4 w-4 accent-[#3b2418]" checked={eggless} onChange={(e) => set({ eggless: e.target.checked ? "1" : null })} /> Eggless available
+            <input type="checkbox" className="h-4 w-4 accent-cocoa" checked={eggless} onChange={(e) => set({ eggless: e.target.checked ? "1" : null })} /> Eggless available
           </label>
           <label className="chip cursor-pointer select-none">
-            <input type="checkbox" className="h-4 w-4 accent-[#3b2418]" checked={wish} onChange={(e) => set({ wish: e.target.checked ? "1" : null })} /> Wishlist {ready && wishlist.length > 0 && `(${wishlist.length})`}
+            <input type="checkbox" className="h-4 w-4 accent-cocoa" checked={wish} onChange={(e) => set({ wish: e.target.checked ? "1" : null })} /> Wishlist {ready && wishlist.length > 0 && `(${wishlist.length})`}
           </label>
           <div>
             <label htmlFor="sort" className="sr-only">Sort by</label>

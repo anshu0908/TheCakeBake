@@ -17,9 +17,9 @@ export default function CartPage() {
           <p className="py-20 text-center text-cocoa-500">Loading…</p>
         ) : cart.length === 0 ? (
           <div className="py-16 text-center">
-            <div className="mx-auto mb-4 grid h-20 w-20 place-items-center rounded-full bg-blush-100 text-3xl" aria-hidden>🧁</div>
+            <div className="mx-auto mb-4 grid h-20 w-20 place-items-center rounded-full bg-blush-100 text-blush-700"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20h16M5 20v-6a2 2 0 012-2h10a2 2 0 012 2v6M5 15.5c1.200 1 2.300 1 3.500 0s2.300-1 3.500 0 2.300 1 3.500 0 2.300-1 3.500 0M12 12V8M12 5.500a1 1 0 01-1-1c0-.700 1-2 1-2s1 1.300 1 2a1 1 0 01-1 1z" /></svg></div>
             <p className="font-serif text-3xl">Your cart is empty</p>
-            <p className="lead mt-2">Let's find something delicious.</p>
+            <p className="lead mt-2">Let’s find something delicious.</p>
             <Link href="/menu" className="btn-primary mt-6">Browse the menu</Link>
           </div>
         ) : (

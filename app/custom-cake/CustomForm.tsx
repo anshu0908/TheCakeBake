@@ -104,7 +104,7 @@ export default function CustomForm() {
     return (
       <section className="container-x max-w-2xl py-16 text-center">
         <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-emerald-100 text-4xl text-emerald-700" aria-hidden>✓</div>
-        <h2 className="h-display mt-6 text-4xl">Request received</h2>
+        <h2 className="h-display mx-auto mt-6 text-4xl">Request received</h2>
         <p className="lead mt-3">Thank you, {done.name.split(" ")[0]}. Your request <strong>{done.id}</strong> is with our team. Send it on WhatsApp to get your quote fastest.</p>
         <div className="card mt-8 p-6 text-left text-sm">
           <dl className="grid grid-cols-2 gap-x-6 gap-y-2">
@@ -122,7 +122,7 @@ export default function CustomForm() {
   }
 
   const Err = ({ k }: { k: string }) => (errors[k] ? <p className="field-error" role="alert">{errors[k]}</p> : null);
-  const choice = (selected: boolean) => `cursor-pointer rounded-2xl border p-4 text-left transition ${selected ? "border-cocoa bg-cocoa text-cream" : "border-cocoa/20 bg-white hover:border-cocoa/60"}`;
+  const choice = (selected: boolean) => `cursor-pointer whitespace-nowrap rounded-field border px-4 py-3 text-left transition-colors active:scale-[0.98] ${selected ? "border-cocoa bg-cocoa text-cream" : "border-cocoa/20 bg-white hover:border-cocoa/60"}`;
 
   return (
     <section className="container-x grid gap-10 py-12 lg:grid-cols-[1fr_320px]">
@@ -135,12 +135,12 @@ export default function CustomForm() {
             </li>
           ))}
         </ol>
-        <p className="eyebrow">Step {step + 1} of {stepNames.length}</p>
+        <p className="meta" aria-live="polite">Step {step + 1} of {stepNames.length}</p>
 
         <div className="mt-2 min-h-[260px]">
           {step === 0 && (<>
             <h2 className="font-serif text-3xl">What are we celebrating?</h2>
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3" role="radiogroup" aria-label="Occasion">
+            <div className="mt-6 flex flex-wrap gap-3" role="radiogroup" aria-label="Occasion">
               {occasions.map((o) => <button key={o} type="button" role="radio" aria-checked={f.occasion === o} onClick={() => up("occasion", o)} className={choice(f.occasion === o)}>{o}</button>)}
             </div><Err k="occasion" />
           </>)}
@@ -196,7 +196,7 @@ export default function CustomForm() {
               </div>
             ) : (
               <label htmlFor="ref" className="mt-6 grid cursor-pointer place-items-center rounded-3xl border-2 border-dashed border-cocoa/25 bg-cream p-10 text-center transition hover:border-gold">
-                <span className="text-3xl" aria-hidden>📷</span>
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-8 w-8 text-cocoa-600" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.500" /></svg>
                 <span className="mt-2 font-medium">{uploading ? "Processing…" : "Tap to upload an image"}</span>
                 <span className="text-sm text-cocoa-500">JPG or PNG. Preview only; you'll also send it on WhatsApp.</span>
               </label>
@@ -245,9 +245,9 @@ export default function CustomForm() {
 
       <aside className="h-fit space-y-4 lg:sticky lg:top-28">
         <div className="card bg-gradient-to-br from-white to-blush-50 p-6">
-          <p className="eyebrow">Estimated price</p>
+          <p className="term">Estimated price</p>
           {est ? (<>
-            <p className="mt-2 font-serif text-4xl" aria-live="polite">{inr(est.low)} – {inr(est.high)}</p>
+            <p className="mt-2 font-serif text-4xl" aria-live="polite">{inr(est.low)} to {inr(est.high)}</p>
             <p className="mt-1 text-sm text-cocoa-600">For {f.size.split(" (")[0]}, {f.tiers} tier{f.tiers > 1 ? "s" : ""}</p>
           </>) : <p className="mt-2 text-cocoa-600">Choose a size to see an estimate.</p>}
           <p className="mt-4 text-xs text-cocoa-500">An estimate only. Your final quote depends on design complexity and is confirmed on WhatsApp.</p>

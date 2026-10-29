@@ -1,0 +1,32 @@
+:root {
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
+  --text-xs: 0.8125rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.25rem; --text-xl: 1.5625rem; --text-2xl: 1.953rem; --text-3xl: 2.441rem;
+  --text-display-s: clamp(2.25rem, 4vw + 0.5rem, 3.75rem); --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-section: clamp(2.125rem, 2.5vw + 1rem, 3.25rem); --text-title: clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem); --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.3125rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); --ease-in: cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+  --color-error: oklch(52% 0.19 27); --color-success: oklch(50% 0.12 150);
+  --container: 1440px; --gutter: 64px; --gap-columns: 32px; --section-gap-s: 120px; --section-gap: 144px; --section-gap-l: 176px;
+  --z-base: 1; --z-raised: 10; --z-dropdown: 100; --z-sticky: 200; --z-sticky-nav: 300; --z-modal: 400; --z-toast: 500; --z-tooltip: 600;
+
+  /* The Cake Bake palette, unchanged: the brand's own hex values as RGB channels, so Tailwind's opacity modifiers keep working. */
+  --rgb-cream-50: 254 251 246; --rgb-cream: 251 246 238; --rgb-cream-200: 244 234 219; --rgb-cream-300: 233 217 192;
+  --rgb-cocoa: 59 36 24; --rgb-cocoa-700: 78 50 35; --rgb-cocoa-600: 107 74 56; --rgb-cocoa-500: 138 106 87; --rgb-cocoa-400: 168 140 123;
+  --rgb-blush-50: 253 241 243; --rgb-blush-100: 249 220 226; --rgb-blush-200: 242 188 200; --rgb-blush: 217 119 138; --rgb-blush-600: 194 94 114; --rgb-blush-700: 162 74 93;
+  --rgb-gold-300: 227 201 143; --rgb-gold-400: 205 170 102; --rgb-gold: 184 146 74; --rgb-gold-600: 149 116 49; --rgb-gold-700: 116 90 34;
+  --rgb-white: 255 255 255; --rgb-whatsapp: 14 122 87; --rgb-whatsapp-700: 11 100 71;
+
+  /* Hallmark roles, mapped onto that palette */
+  --color-paper: rgb(var(--rgb-cream)); --color-paper-2: rgb(var(--rgb-cream-200)); --color-paper-3: rgb(var(--rgb-cream-300));
+  --color-ink: rgb(var(--rgb-cocoa)); --color-ink-2: rgb(var(--rgb-cocoa-600)); --color-muted: rgb(var(--rgb-cocoa-500));
+  --color-rule: rgb(var(--rgb-cocoa) / 0.12);
+  --color-accent: rgb(var(--rgb-blush-700)); --color-accent-ink: rgb(var(--rgb-cream)); --color-focus: rgb(var(--rgb-gold-700));
+  --color-gold: rgb(var(--rgb-gold)); --color-blush-wash: rgb(var(--rgb-blush-50));
+
+  --font-display: var(--font-serif), "Fraunces", Georgia, serif; --font-body: var(--font-sans), "DM Sans", ui-sans-serif, system-ui, sans-serif; --font-outlier: var(--font-body);
+  --display-weight: 360; --display-axes: "SOFT" 100, "WONK" 0;
+  --radius-card: 1.25rem; --radius-field: 0.75rem; --radius-pill: 999px; --rule-hair: 1px;
+  --shadow-card: 0 1px 2px rgb(var(--rgb-cocoa) / 0.06);
+  --shadow-overlay: 0 20px 50px -15px rgb(var(--rgb-cocoa) / 0.28);
+  --tracking-display: -0.02em;
+}

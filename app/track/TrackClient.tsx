@@ -30,13 +30,13 @@ export default function TrackClient() {
       <div className="mt-10" aria-live="polite">
         {!ready ? null : touched && !order ? (
           <div className="card p-8 text-center">
-            <p className="font-serif text-2xl">We couldn't find that order</p>
+            <p className="font-serif text-2xl">We couldn’t find that order</p>
             <p className="lead mt-2">Check the ID (it looks like TCB-10482) and try again.</p>
           </div>
         ) : order ? (
           <div className="card p-6 sm:p-10">
             <div className="flex flex-wrap items-start justify-between gap-3">
-              <div><p className="eyebrow">Order</p><p className="font-serif text-3xl">{order.id}</p></div>
+              <div><p className="term">Order</p><p className="font-serif text-3xl">{order.id}</p></div>
               <p className="text-sm text-cocoa-600">Delivering {fmtDate(order.deliveryDate)}<br />{order.slot}</p>
             </div>
             <ol className="mt-10 grid grid-cols-4 gap-2">
@@ -52,7 +52,7 @@ export default function TrackClient() {
               })}
             </ol>
             <p className="mt-8 rounded-2xl bg-cream p-4 text-center text-sm">
-              {order.status === "received" && "We've received your order and will begin baking shortly."}
+              {order.status === "received" && "We’ve received your order and will begin baking shortly."}
               {order.status === "baking" && "Your cake is in the oven. Baked and decorated by hand."}
               {order.status === "out" && "Your order is on its way. Keep your phone handy."}
               {order.status === "delivered" && "Delivered. We hope you enjoy every bite!"}

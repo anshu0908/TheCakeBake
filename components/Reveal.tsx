@@ -1,20 +1,37 @@
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
+// One shared observer for every reveal on the page.
+let io: IntersectionObserver | null = null;
+function observer() {
+  if (!io) {
+    io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("is-in"); io?.unobserve(e.target); }
+    }), { rootMargin: "0px 0px -8% 0px" });
+  }
+  return io;
+}
+
+/**
+ * Scroll reveal that never hides content on its own: the markup is visible as rendered, and only
+ * `html.js` (set before paint in the layout) fades it in once it enters the viewport.
+ * `delay` is kept for existing callers and maps onto the stagger step.
+ */
 export default function Reveal({
-  children, delay = 0, y = 24, className = "", as = "div",
+  children, delay = 0, className = "", as: Tag = "div",
 }: { children: ReactNode; delay?: number; y?: number; className?: string; as?: "div" | "li" | "section" }) {
-  const reduce = useReducedMotion();
-  const Tag = motion[as];
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const o = observer();
+    o.observe(el);
+    return () => o.unobserve(el);
+  }, []);
+  const style = { "--i": Math.round(delay / 0.06) } as CSSProperties;
   return (
-    <Tag
-      className={className}
-      initial={reduce ? false : { opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    <Tag ref={ref as any} data-reveal="" className={className} style={style}>
       {children}
     </Tag>
   );

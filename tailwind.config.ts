@@ -1,23 +1,29 @@
 import type { Config } from "tailwindcss";
 
+// Every colour resolves to a token in app/tokens.css (the brand's own values, unchanged).
+const c = (name: string) => `rgb(var(--rgb-${name}) / <alpha-value>)`;
+
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        cream: { DEFAULT: "#FBF6EE", 50: "#FEFBF6", 100: "#FBF6EE", 200: "#F4EADB", 300: "#E9D9C0" },
-        cocoa: { DEFAULT: "#3B2418", 700: "#4E3223", 600: "#6B4A38", 500: "#8A6A57", 400: "#A88C7B" },
-        blush: { DEFAULT: "#D9778A", 50: "#FDF1F3", 100: "#F9DCE2", 200: "#F2BCC8", 500: "#D9778A", 600: "#C25E72", 700: "#A24A5D" },
-        gold: { DEFAULT: "#B8924A", 700: "#745A22", 300: "#E3C98F", 400: "#CDAA66", 500: "#B8924A", 600: "#957431" },
+        white: c("white"),
+        cream: { DEFAULT: c("cream"), 50: c("cream-50"), 100: c("cream"), 200: c("cream-200"), 300: c("cream-300") },
+        cocoa: { DEFAULT: c("cocoa"), 700: c("cocoa-700"), 600: c("cocoa-600"), 500: c("cocoa-500"), 400: c("cocoa-400") },
+        blush: { DEFAULT: c("blush"), 50: c("blush-50"), 100: c("blush-100"), 200: c("blush-200"), 500: c("blush"), 600: c("blush-600"), 700: c("blush-700") },
+        gold: { DEFAULT: c("gold"), 700: c("gold-700"), 300: c("gold-300"), 400: c("gold-400"), 500: c("gold"), 600: c("gold-600") },
+        whatsapp: { DEFAULT: c("whatsapp"), 700: c("whatsapp-700") },
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        serif: ["var(--font-display)"],
+        sans: ["var(--font-body)"],
       },
-      keyframes: { marquee: { "0%": { transform: "translateX(0)" }, "100%": { transform: "translateX(-50%)" } }, float: { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-8px)" } } },
+      borderRadius: { card: "var(--radius-card)", field: "var(--radius-field)" },
+      transitionTimingFunction: { out: "var(--ease-out)" },
       boxShadow: {
-        soft: "0 10px 40px -12px rgba(59,36,24,0.18)",
-        lift: "0 20px 50px -15px rgba(59,36,24,0.28)",
+        soft: "var(--shadow-card)",
+        lift: "var(--shadow-overlay)",
       },
     },
   },

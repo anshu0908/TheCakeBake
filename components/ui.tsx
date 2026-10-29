@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
 import { openStatus } from "@/lib/utils";
 import { useStore } from "@/lib/store";
@@ -26,32 +27,37 @@ export function OpenBadge({ className = "", dark = false }: { className?: string
   }, []);
   if (!s) return <span className={`inline-block h-5 w-36 ${className}`} aria-hidden />;
   return (
-    <span className={`inline-flex items-center gap-2 text-sm font-medium ${dark ? "text-cream" : "text-cocoa"} ${className}`}>
-      <span className={`h-2.5 w-2.5 rounded-full ${s.isOpen ? "bg-emerald-500" : "bg-red-500"}`} aria-hidden />
+    <span role="status" className={`inline-flex items-center gap-2 text-sm font-medium ${dark ? "text-cream" : "text-cocoa"} ${className}`}>
+      <span className="h-2 w-2 rounded-full" style={{ background: s.isOpen ? "var(--color-success)" : "var(--color-error)" }} aria-hidden />
       <span>{s.label}</span>
-      <span className={dark ? "text-cream/70" : "text-cocoa-500"}>· {s.detail}</span>
+      <span className={dark ? "text-cream/75" : "text-cocoa-600"}>· {s.detail}</span>
     </span>
   );
 }
 
+/** Inner-page opening: a working breadcrumb (the old eyebrow text names the current page), then the head, left-aligned on the brand wash. */
 export function PageHero({ eyebrow, title, children }: { eyebrow?: string; title: string; children?: ReactNode }) {
   return (
-    <section className="relative overflow-hidden border-b border-cocoa/10 bg-gradient-to-b from-blush-50 to-cream">
-      <div className="container-x py-14 text-center sm:py-20">
-        {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
-        <h1 className="h-display text-4xl sm:text-5xl lg:text-6xl">{title}</h1>
-        {children && <div className="lead mx-auto mt-4 max-w-2xl">{children}</div>}
+    <section className="border-b border-cocoa/10 bg-gradient-to-b from-blush-50 to-cream">
+      <div className="container-x pb-14 pt-8 sm:pb-20 sm:pt-10">
+        <nav aria-label="Breadcrumb">
+          <ol className="crumbs">
+            <li><Link href="/" className="hover:text-blush-700">Home</Link></li>
+            <li aria-current="page">{eyebrow ?? title}</li>
+          </ol>
+        </nav>
+        <h1 className="h-display mt-10 sm:mt-14">{title}</h1>
+        {children && <div className="lead mt-5">{children}</div>}
       </div>
     </section>
   );
 }
 
-export function SectionHead({ eyebrow, title, sub, center = true }: { eyebrow?: string; title: string; sub?: string; center?: boolean }) {
+export function SectionHead({ title, sub, center = false, className = "" }: { title: string; sub?: string; center?: boolean; className?: string }) {
   return (
-    <div className={`mb-10 sm:mb-14 ${center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}`}>
-      {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
+    <div className={`mb-12 sm:mb-16 ${center ? "mx-auto max-w-2xl text-center [&>*]:mx-auto" : ""} ${className}`}>
       <h2 className="h-section">{title}</h2>
-      {sub && <p className="lead mt-3">{sub}</p>}
+      {sub && <p className="lead mt-4">{sub}</p>}
     </div>
   );
 }
@@ -76,7 +82,7 @@ export function PasswordInput({ id, value, onChange, invalid, className = "", ..
   return (
     <div className="relative">
       <input {...rest} id={id} type={show ? "text" : "password"} value={value} onChange={(e) => onChange(e.target.value)} aria-invalid={invalid} className={`input pr-12 ${invalid ? "input-error" : ""} ${className}`} />
-      <button type="button" onClick={() => setShow((s) => !s)} aria-pressed={show} aria-label={show ? "Hide password" : "Show password"} className="absolute right-1.5 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full text-cocoa-500 transition hover:bg-cocoa/5 hover:text-cocoa">
+      <button type="button" onClick={() => setShow((s) => !s)} aria-pressed={show} aria-label={show ? "Hide password" : "Show password"} className="absolute right-1.5 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full text-cocoa-600 transition-colors hover:bg-cocoa/5 hover:text-cocoa">
         {show ? (
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M3 3l18 18M10.6 6.2A9.8 9.8 0 0112 6c5 0 8.500 4.200 9.500 6-.5.900-1.400 2.100-2.700 3.200M6.700 6.800C4.600 8.100 3.200 10 2.500 12c1 1.800 4.500 6 9.500 6 1.600 0 3-.4 4.200-1M9.900 9.900a3 3 0 004.200 4.200" /></svg>
         ) : (

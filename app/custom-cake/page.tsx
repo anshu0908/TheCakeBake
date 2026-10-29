@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <PageHero eyebrow="Custom cakes" title="Design your cake">Tell us what you have in mind. We'll send a quote on WhatsApp.</PageHero>
+      <PageHero eyebrow="Custom cakes" title="Design your cake">Tell us what you have in mind. We’ll send a quote on WhatsApp.</PageHero>
       <Suspense fallback={null}><CustomForm /></Suspense>
     </>
   );

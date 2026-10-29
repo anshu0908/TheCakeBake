@@ -29,7 +29,7 @@ export default function ProductView({ slug }: { slug: string }) {
   if (!p) {
     return (
       <div className="container-x py-32 text-center">
-        <p className="font-serif text-4xl">We couldn't find that item</p>
+        <p className="font-serif text-4xl">We couldn’t find that item</p>
         <Link href="/menu" className="btn-primary mt-6">Back to the menu</Link>
       </div>
     );
@@ -51,7 +51,7 @@ export default function ProductView({ slug }: { slug: string }) {
     const err: typeof errors = {};
     if (!date) err.date = "Please choose a delivery date.";
     if (!slot) err.slot = "Please choose a time slot.";
-    if (pin && !checkPin()) err.pin = "We don't deliver to that pincode yet.";
+    if (pin && !checkPin()) err.pin = "We don’t deliver to that pincode yet.";
     setErrors(err);
     if (Object.keys(err).length) return;
     addToCart({ productId: p.id, name: p.name, image: p.image, size: size.label, price: size.price, eggless, message: message.trim() || undefined, date, slot, qty });
@@ -97,7 +97,7 @@ export default function ProductView({ slug }: { slug: string }) {
 
           {p.eggless && (
             <label className="mt-6 flex cursor-pointer items-center gap-3">
-              <input type="checkbox" className="h-5 w-5 accent-[#3b2418]" checked={eggless} onChange={(e) => setEggless(e.target.checked)} />
+              <input type="checkbox" className="h-5 w-5 accent-cocoa" checked={eggless} onChange={(e) => setEggless(e.target.checked)} />
               <span className="text-sm font-medium">Make it eggless</span>
             </label>
           )}
@@ -135,7 +135,7 @@ export default function ProductView({ slug }: { slug: string }) {
             <div aria-live="polite">
               {errors.pin && <p className="field-error">{errors.pin}</p>}
               {pinState === "ok" && <p className="mt-1.5 text-[13px] font-semibold text-emerald-700">✓ Delivery available to {pin}</p>}
-              {pinState === "bad" && <p className="field-error">Not serviceable at {pin} right now. Call or WhatsApp us and we'll try to help.</p>}
+              {pinState === "bad" && <p className="field-error">Not serviceable at {pin} right now. Call or WhatsApp us and we’ll try to help.</p>}
             </div>
           </div>
 

@@ -1,8 +1,7 @@
 "use client";
-import { useState } from "react";
-import { site } from "@/config/site";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useStore } from "@/lib/store";
-import { PasswordInput } from "@/components/ui";
 import Dashboard from "./Dashboard";
 import { OrdersTab, CustomTab, EnquiriesTab } from "./Tabs";
 import ProductsTab from "./ProductsTab";
@@ -10,35 +9,18 @@ import ProductsTab from "./ProductsTab";
 const tabs = ["Dashboard", "Orders", "Custom cakes", "Products", "Enquiries"] as const;
 type Tab = (typeof tabs)[number];
 
-function Login() {
-  const { login } = useStore();
-  const [u, setU] = useState("");
-  const [p, setP] = useState("");
-  const [err, setErr] = useState("");
-  return (
-    <section className="container-x grid min-h-[60vh] place-items-center py-16">
-      <form onSubmit={(e) => { e.preventDefault(); if (!login(u, p)) setErr("Incorrect username or password."); }} className="card w-full max-w-sm space-y-5 p-8">
-        <div className="text-center"><p className="eyebrow">Owner area</p><h1 className="font-serif text-3xl">Admin sign in</h1></div>
-        <div><label htmlFor="u" className="label">Username</label><input id="u" className="input" value={u} onChange={(e) => { setU(e.target.value); setErr(""); }} autoComplete="username" /></div>
-        <div><label htmlFor="p" className="label">Password</label><PasswordInput id="p" value={p} onChange={(v) => { setP(v); setErr(""); }} autoComplete="current-password" invalid={!!err} />
-          {err && <p role="alert" className="field-error">{err}</p>}</div>
-        <button className="btn-primary w-full">Sign in</button>
-        <p className="rounded-xl bg-cream p-3 text-center text-xs text-cocoa-600">Demo login: <strong>{site.admin.user}</strong> / <strong>{site.admin.pass}</strong></p>
-      </form>
-    </section>
-  );
-}
-
 export default function AdminApp() {
   const { ready, isAdmin, logout, resetDemo, orders, custom } = useStore();
   const [tab, setTab] = useState<Tab>("Dashboard");
-  if (!ready) return <p className="py-32 text-center text-cocoa-500">Loading…</p>;
-  if (!isAdmin) return <Login />;
+  const router = useRouter();
+  // Signed-out visitors go to the Admin Login page (a browser-only demo session; see app/admin/login).
+  useEffect(() => { if (ready && !isAdmin) router.replace("/admin/login"); }, [ready, isAdmin, router]);
+  if (!ready || !isAdmin) return <p role="status" className="py-32 text-center text-cocoa-600">Loading…</p>;
   const badge = (t: Tab) => (t === "Custom cakes" ? custom.filter((c) => c.status === "new").length : t === "Orders" ? orders.filter((o) => o.status === "received").length : 0);
   return (
     <section className="container-x py-8 sm:py-12">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-        <div><p className="eyebrow">Owner area</p><h1 className="font-serif text-3xl sm:text-4xl">Welcome back</h1></div>
+        <div><h1 className="font-serif text-3xl sm:text-4xl">Welcome back</h1><p className="meta mt-1">Owner area</p></div>
         <div className="flex gap-2">
           <button className="btn-outline btn-sm" onClick={() => { if (confirm("Reset all demo data (orders, requests, products, cart)?")) resetDemo(); }}>Reset demo data</button>
           <button className="btn-primary btn-sm" onClick={logout}>Sign out</button>
