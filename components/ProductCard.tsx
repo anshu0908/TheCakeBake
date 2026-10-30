@@ -15,11 +15,12 @@ export default function ProductCard({ p }: { p: Product }) {
       <div className="relative aspect-[4/5] overflow-hidden rounded-card bg-cream-200">
         <Link href={`/menu/${p.slug}`} aria-label={`View ${p.name}`} className="absolute inset-0 z-[1] rounded-card" />
         <SmartImage src={p.image} alt={`${p.name}`} sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
-        <div className="pointer-events-none absolute left-3 top-3 z-[2] flex flex-col items-start gap-1.5">
+        {/* Tags stop short of the wishlist button; on narrow phone cards "Eggless available" shortens to "Eggless". */}
+        <div className="pointer-events-none absolute left-2.5 right-16 top-3 z-[2] flex flex-col items-start gap-1.5 sm:left-3">
           {p.tags.map((t) => (
-            <span key={t} className="rounded-full bg-cream/95 px-2.5 py-1 text-xs font-semibold text-cocoa">{t}</span>
+            <span key={t} className="max-w-full truncate rounded-full bg-cream/95 px-2.5 py-1 text-xs font-semibold text-cocoa">{t}</span>
           ))}
-          {p.eggless && <span className="rounded-full bg-cream/95 px-2.5 py-1 text-xs font-medium text-cocoa-600">Eggless available</span>}
+          {p.eggless && <span className="max-w-full truncate rounded-full bg-cream/95 px-2.5 py-1 text-xs font-medium text-cocoa-600">Eggless<span className="hidden sm:inline"> available</span></span>}
         </div>
         <button
           type="button"

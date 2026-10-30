@@ -32,7 +32,7 @@ export const images = {
   hero: u(P.chocDrip, 1400),
   heroSecondary: u(P.pinkDrip, 900),
   customTeaser: u(P.berryFloral, 1100),
-  about: u(P.bakery, 1100),
+  about: u(P.decoCookies, 1100),
   gifting: u(P.hamper, 1100),
   contact: u(P.cookiesBasket, 1100),
   categories: {

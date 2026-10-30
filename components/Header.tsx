@@ -105,7 +105,7 @@ export default function Header() {
           <MotionConfig reducedMotion="user">
           <motion.div className="fixed inset-0 z-50 xl:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <button className="absolute inset-0 bg-cocoa/50" onClick={() => setMenu(false)} aria-label="Close menu" />
-            <motion.nav data-lenis-prevent aria-label="Mobile" className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-cream p-6 shadow-lift"
+            <motion.nav data-lenis-prevent aria-label="Mobile" className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col overflow-y-auto bg-cream p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-lift"
               initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "tween", duration: 0.3 }}>
               <div className="mb-6 flex items-center justify-between">
                 <Image src="/brand/logo-mark.png" alt={site.name} width={549} height={495} className="h-12 w-auto" />
@@ -116,7 +116,7 @@ export default function Header() {
               <ul className="flex-1 space-y-1">
                 {[{ href: "/", label: "Home" }, ...nav, { href: "/track", label: "Track order" }].map((n) => (
                   <li key={n.href}>
-                    <Link href={n.href} className={`block rounded-xl px-3 py-3 font-serif text-2xl ${active(n.href) ? "text-blush-700" : "text-cocoa"}`}>{n.label}</Link>
+                    <Link href={n.href} aria-current={active(n.href) ? "page" : undefined} className={`block rounded-xl px-3 py-3 font-serif text-2xl transition-colors hover:bg-cocoa/5 ${active(n.href) ? "text-blush-700" : "text-cocoa"}`}>{n.label}</Link>
                   </li>
                 ))}
               </ul>

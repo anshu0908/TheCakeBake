@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
 };
-export const viewport: Viewport = { themeColor: "#FBF6EE", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#FBF6EE", width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -78,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CartDrawer />
           <Toaster />
           <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"
-            className="fixed bottom-5 right-4 z-30 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-white shadow-lift transition-colors duration-200 hover:bg-whatsapp-700 sm:right-6">
+            className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-30 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-white shadow-lift transition-colors duration-200 hover:bg-whatsapp-700 sm:right-6">
             <WhatsAppIcon className="h-7 w-7" />
           </a>
         </StoreProvider>

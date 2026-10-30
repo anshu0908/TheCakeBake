@@ -4,6 +4,7 @@ import { useState } from "react";
 import { site } from "@/config/site";
 import { reviews } from "@/data/reviews";
 import { useStore } from "@/lib/store";
+import { categories } from "@/lib/types";
 import { inr, isGurugramPin, istDate, slots } from "@/lib/utils";
 import ProductCard from "@/components/ProductCard";
 import SmartImage from "@/components/SmartImage";
@@ -59,9 +60,13 @@ export default function ProductView({ slug }: { slug: string }) {
 
   return (
     <>
-      <div className="container-x pt-6 text-sm text-cocoa-500">
-        <Link href="/menu" className="hover:text-blush-700">Menu</Link> / <Link href={`/menu?cat=${p.category}`} className="hover:text-blush-700 capitalize">{p.category === "cupcakes" ? "Cupcakes & Pastries" : p.category === "tubs" ? "Cake Tubs" : p.category === "dry" ? "Dry Cakes" : p.category === "hampers" ? "Hampers" : "Cakes"}</Link> / <span className="text-cocoa">{p.name}</span>
-      </div>
+      <nav aria-label="Breadcrumb" className="container-x pt-6">
+        <ol className="crumbs">
+          <li><Link href="/menu" className="crumb-link">Menu</Link></li>
+          <li><Link href={`/menu?cat=${p.category}`} className="crumb-link">{categories.find((c) => c.id === p.category)?.label ?? "Cakes"}</Link></li>
+          <li aria-current="page" className="text-cocoa">{p.name}</li>
+        </ol>
+      </nav>
       <section className="container-x grid gap-10 py-8 lg:grid-cols-2 lg:gap-16 lg:py-12">
         <div>
           <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-cream-200 shadow-soft">
@@ -139,11 +144,12 @@ export default function ProductView({ slug }: { slug: string }) {
             </div>
           </div>
 
+          {/* Phones: quantity and wishlist share the first row, the add button takes the full second row. */}
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <QtyControl qty={qty} onChange={(n) => setQty(Math.max(1, n))} />
-            <button onClick={add} disabled={!p.inStock} className="btn-primary flex-1 sm:flex-none sm:px-10">{p.inStock ? `Add to cart · ${inr(size.price * qty)}` : "Sold out"}</button>
-            <button onClick={() => { toggleWish(p.id); notify(wished ? "Removed from wishlist" : "Saved to wishlist"); }} aria-pressed={wished} aria-label="Toggle wishlist" className="grid h-12 w-12 place-items-center rounded-full border border-cocoa/20 hover:border-cocoa">
-              <svg viewBox="0 0 24 24" className={`h-5 w-5 ${wished ? "fill-blush-600 text-blush-600" : ""}`} fill={wished ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8"><path d="M12 20s-7-4.400-7-10a4 4 0 017-2.600A4 4 0 0119 10c0 5.600-7 10-7 10z" strokeLinejoin="round" /></svg>
+            <button type="button" onClick={add} disabled={!p.inStock} className="btn-primary order-last w-full sm:order-none sm:w-auto sm:px-10">{p.inStock ? `Add to cart · ${inr(size.price * qty)}` : "Sold out"}</button>
+            <button type="button" onClick={() => { toggleWish(p.id); notify(wished ? "Removed from wishlist" : "Saved to wishlist"); }} aria-pressed={wished} aria-label={wished ? `Remove ${p.name} from wishlist` : `Save ${p.name} to wishlist`} className="ml-auto grid h-12 w-12 place-items-center rounded-full border border-cocoa/20 transition-colors hover:border-cocoa sm:ml-0">
+              <svg aria-hidden="true" viewBox="0 0 24 24" className={`h-5 w-5 ${wished ? "fill-blush-600 text-blush-600" : ""}`} fill={wished ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.8"><path d="M12 20s-7-4.400-7-10a4 4 0 017-2.600A4 4 0 0119 10c0 5.600-7 10-7 10z" strokeLinejoin="round" /></svg>
             </button>
           </div>
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-1 text-sm text-cocoa-600">{site.services.map((s) => <li key={s}>✓ {s}</li>)}</ul>

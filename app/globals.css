@@ -27,10 +27,11 @@
 @tailwind utilities;
 
 @layer base {
-  html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
+  html { -webkit-text-size-adjust: 100%; overflow-x: clip; -webkit-tap-highlight-color: rgb(var(--rgb-blush-200) / 0.35); }
+  a, button, summary, label, select, input, textarea { touch-action: manipulation; }
   html.lenis, html.lenis body { height: auto; }
   .lenis.lenis-stopped { overflow: hidden; }
-  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  [data-lenis-prevent] { overscroll-behavior: contain; }
   body { overflow-x: clip; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); font-size: var(--text-md); line-height: 1.55; -webkit-font-smoothing: antialiased; font-synthesis: none; }
   h1, h2, h3, .font-serif { font-variation-settings: var(--display-axes); font-weight: var(--display-weight); }
   h1, h2, h3 { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--tracking-display); overflow-wrap: break-word; min-width: 0; text-wrap: balance; }
@@ -96,6 +97,9 @@
   /* Breadcrumb that opens every inner page */
   .crumbs { display: flex; flex-wrap: wrap; gap: var(--space-xs); font-size: var(--text-sm); color: var(--color-ink-2); }
   .crumbs li + li::before { content: "/"; margin-right: var(--space-xs); color: rgb(var(--rgb-cocoa) / 0.35); }
+  /* Text-sized links with a 44px tap area that doesn't change the line box */
+  .crumb-link, .tap-link { display: inline-block; padding-block: 0.75rem; margin-block: -0.75rem; transition: color var(--dur-short) var(--ease-out); }
+  .crumb-link:hover { color: var(--color-accent); }
 }
 
 /* One reveal (Hallmark patterns: visible without script, end state under reduced motion) */

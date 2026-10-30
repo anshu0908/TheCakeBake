@@ -46,7 +46,7 @@ export default function CartDrawer() {
             <div className="flex items-center justify-between border-b border-cocoa/10 px-5 py-4">
               <h2 className="font-serif text-2xl">Your cart</h2>
               <button ref={closeRef} onClick={() => setCartOpen(false)} className="grid h-11 w-11 place-items-center rounded-full hover:bg-cocoa/5" aria-label="Close cart">
-                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
               </button>
             </div>
 
@@ -84,7 +84,7 @@ export default function CartDrawer() {
                     </li>
                   ))}
                 </ul>
-                <div className="space-y-3 border-t border-cocoa/10 bg-white px-5 py-4">
+                <div className="space-y-3 border-t border-cocoa/10 bg-white px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4">
                   <div className="flex justify-between text-lg font-semibold"><span>Subtotal</span><span>{inr(totals.subtotal)}</span></div>
                   <p className="text-xs text-cocoa-500">Delivery and coupons are applied at checkout.</p>
                   <Link href="/checkout" onClick={() => setCartOpen(false)} className="btn-primary w-full">Checkout</Link>

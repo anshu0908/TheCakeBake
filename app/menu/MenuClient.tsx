@@ -50,10 +50,10 @@ export default function MenuClient() {
             <button key={c.id} className={`chip shrink-0 ${cat === c.id ? "chip-on" : ""}`} aria-pressed={cat === c.id} onClick={() => set({ cat: c.id })}>{c.label}</button>
           ))}
         </div>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <div className="relative flex-1">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <div className="relative w-full sm:w-auto sm:min-w-[16rem] sm:flex-1">
             <label htmlFor="q" className="sr-only">Search menu</label>
-            <input id="q" className="input pl-11" placeholder="Search the menu…" value={q} onChange={(e) => set({ q: e.target.value || null })} />
+            <input id="q" type="search" name="q" autoComplete="off" spellCheck={false} className="input pl-11" placeholder="Search the menu…" value={q} onChange={(e) => set({ q: e.target.value || null })} />
             <svg aria-hidden="true" viewBox="0 0 24 24" className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-cocoa-500" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.500-3.500" strokeLinecap="round" /></svg>
           </div>
           <label className="chip cursor-pointer select-none">
@@ -62,9 +62,9 @@ export default function MenuClient() {
           <label className="chip cursor-pointer select-none">
             <input type="checkbox" className="h-4 w-4 accent-cocoa" checked={wish} onChange={(e) => set({ wish: e.target.checked ? "1" : null })} /> Wishlist {ready && wishlist.length > 0 && `(${wishlist.length})`}
           </label>
-          <div>
+          <div className="ml-auto sm:ml-0">
             <label htmlFor="sort" className="sr-only">Sort by</label>
-            <select id="sort" className="input !w-auto" value={sort} onChange={(e) => set({ sort: e.target.value === "popular" ? null : e.target.value })}>
+            <select id="sort" className="input !w-auto min-h-[44px] !py-2" value={sort} onChange={(e) => set({ sort: e.target.value === "popular" ? null : e.target.value })}>
               <option value="popular">Most popular</option>
               <option value="low">Price: low to high</option>
               <option value="high">Price: high to low</option>

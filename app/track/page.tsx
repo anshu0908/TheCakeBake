@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Track your order", description: "Ent
 export default function TrackPage() {
   return (
     <>
-      <PageHero eyebrow="Order tracking" title="Where's my cake?">Enter the order ID from your confirmation.</PageHero>
+      <PageHero eyebrow="Order tracking" title="Where’s my cake?">Enter the order ID from your confirmation.</PageHero>
       <Suspense fallback={null}><TrackClient /></Suspense>
     </>
   );

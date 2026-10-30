@@ -6,7 +6,7 @@ import { OpenBadge } from "./ui";
 const cols = [
   { title: "Shop", links: [["Cakes", "/menu?cat=cakes"], ["Cupcakes & Pastries", "/menu?cat=cupcakes"], ["Cake Tubs", "/menu?cat=tubs"], ["Dry Cakes", "/menu?cat=dry"], ["Hampers", "/menu?cat=hampers"]] },
   { title: "Company", links: [["Custom Cake", "/custom-cake"], ["Gifting", "/gifting"], ["About", "/about"], ["Reviews", "/reviews"], ["Contact", "/contact"]] },
-  { title: "Help", links: [["Track order", "/track"], ["FAQ", "/faq"], ["Privacy", "/privacy"], ["Terms", "/terms"], ["Admin login", "/admin/login"]] },
+  { title: "Help", links: [["Track order", "/track"], ["FAQ", "/faq"], ["Privacy", "/privacy"], ["Terms", "/terms"], ["Admin Login", "/admin/login"]] },
 ];
 
 const Icon = ({ d }: { d: string }) => (
@@ -46,10 +46,10 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-6 lg:col-start-7">
           {cols.map((c) => (
             <nav key={c.title} aria-label={c.title}>
-              <p className="term mb-4">{c.title}</p>
-              <ul className="space-y-3 text-[15px]">
+              <p className="term mb-1.5">{c.title}</p>
+              <ul className="text-[15px]">
                 {c.links.map(([l, h]) => (
-                  <li key={l}><Link href={h} className="transition-colors hover:text-gold-300">{l}</Link></li>
+                  <li key={l}><Link href={h} className="inline-block py-2.5 transition-colors hover:text-gold-300">{l}</Link></li>
                 ))}
               </ul>
             </nav>

@@ -42,7 +42,7 @@ export function PageHero({ eyebrow, title, children }: { eyebrow?: string; title
       <div className="container-x pb-14 pt-8 sm:pb-20 sm:pt-10">
         <nav aria-label="Breadcrumb">
           <ol className="crumbs">
-            <li><Link href="/" className="hover:text-blush-700">Home</Link></li>
+            <li><Link href="/" className="crumb-link">Home</Link></li>
             <li aria-current="page">{eyebrow ?? title}</li>
           </ol>
         </nav>
