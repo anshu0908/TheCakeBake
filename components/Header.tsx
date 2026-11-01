@@ -12,8 +12,8 @@ import SmartImage from "./SmartImage";
 import { lockScroll } from "@/lib/scroll";
 
 const nav = [
-  { href: "/menu", label: "Cakes" },
-  { href: "/custom-cake", label: "Custom Cake" },
+  { href: "/menu", label: "Menu" },
+  { href: "/custom-cake", label: "Custom cake" },
   { href: "/gifting", label: "Gifting" },
   { href: "/about", label: "About" },
   { href: "/reviews", label: "Reviews" },
@@ -57,7 +57,7 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <header className={`sticky top-0 z-40 border-b transition-[background-color,border-color] duration-300 ${scrolled ? "border-cocoa/10 bg-cream/90 backdrop-blur-md" : "border-transparent bg-cream"}`}>
+      <header className={`sticky top-0 z-40 bg-cream transition-[box-shadow] duration-300 ${scrolled ? "shadow-[0_1px_0_rgb(var(--rgb-cocoa)/0.08)]" : ""}`}>
         <div className="container-x flex h-[76px] items-center justify-between gap-6 sm:h-[96px]">
           <Link href="/" className="shrink-0 rounded-md" aria-label={`${site.name} home`}>
             <Image src="/brand/logo-mark.png" alt={site.name} width={549} height={495} priority className="h-[62px] w-auto sm:h-[80px]" />
@@ -66,9 +66,9 @@ export default function Header() {
           <nav aria-label="Main" className="hidden items-center gap-7 whitespace-nowrap xl:flex">
             {nav.map((n) => (
               <Link key={n.href} href={n.href} aria-current={active(n.href) ? "page" : undefined}
-                className={`relative py-1 text-[15px] font-medium transition-colors hover:text-blush-700 ${active(n.href) ? "text-blush-700" : "text-cocoa"}`}>
+                className={`relative py-1 text-[15px] font-semibold transition-colors hover:text-blush-700 ${active(n.href) ? "text-blush-700" : "text-cocoa"}`}>
                 {n.label}
-                {active(n.href) && <span className="absolute inset-x-0 -bottom-0.5 h-px bg-blush-700" />}
+                {active(n.href) && <span className="absolute inset-x-0 -bottom-1 h-0.5 rounded-full bg-blush-700" />}
               </Link>
             ))}
             <Link href="/admin/login" aria-current={pathname.startsWith("/admin") ? "page" : undefined} className="inline-flex min-h-[36px] items-center gap-1.5 rounded-full border border-cocoa/20 px-3.5 text-[13px] font-semibold text-cocoa-600 transition-colors hover:border-cocoa hover:text-cocoa">
@@ -87,7 +87,7 @@ export default function Header() {
             <button onClick={() => setCartOpen(true)} className="relative grid h-11 w-11 place-items-center rounded-full transition-colors hover:bg-cocoa/5" aria-label={`Open cart${ready ? `, ${cartCount} items` : ""}`}>
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M5 8h14l-1.200 11H6.200L5 8zM9 8V6a3 3 0 016 0v2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               {ready && cartCount > 0 && (
-                <span className="absolute right-0.5 top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-blush-700 px-1 text-[11px] font-bold tabular-nums text-cream">{cartCount}</span>
+                <span className="absolute right-0.5 top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-blush-700 px-1 text-[11px] font-bold tabular-nums text-white">{cartCount}</span>
               )}
             </button>
             <a href={site.whatsappUrl + "?text=" + encodeURIComponent("Hi The Cake Bake! I'd like to order a cake.")} target="_blank" rel="noopener noreferrer" className="btn-wa btn-sm ml-1 hidden md:inline-flex">
@@ -114,9 +114,9 @@ export default function Header() {
                 </button>
               </div>
               <ul className="flex-1 space-y-1">
-                {[{ href: "/", label: "Home" }, ...nav, { href: "/track", label: "Track order" }].map((n) => (
+                {[{ href: "/", label: "Home" }, ...nav, { href: "/track", label: "Track an order" }].map((n) => (
                   <li key={n.href}>
-                    <Link href={n.href} aria-current={active(n.href) ? "page" : undefined} className={`block rounded-xl px-3 py-3 font-serif text-2xl transition-colors hover:bg-cocoa/5 ${active(n.href) ? "text-blush-700" : "text-cocoa"}`}>{n.label}</Link>
+                    <Link href={n.href} aria-current={active(n.href) ? "page" : undefined} className={`block rounded-card px-3 py-3 font-serif text-2xl transition-colors hover:bg-cocoa/5 ${active(n.href) ? "text-blush-700" : "text-cocoa"}`}>{n.label}</Link>
                   </li>
                 ))}
               </ul>
@@ -155,20 +155,20 @@ function SearchOverlay({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-label="Search">
       <button className="absolute inset-0 bg-cocoa/50" onClick={onClose} aria-label="Close search" />
-      <div className="relative mx-auto mt-16 w-[calc(100%-2rem)] max-w-xl rounded-3xl bg-cream p-4 shadow-lift sm:mt-24">
+      <div className="relative mx-auto mt-16 w-[calc(100%-2rem)] max-w-xl rounded-card bg-cream p-4 shadow-lift sm:mt-24">
         <form onSubmit={(e) => { e.preventDefault(); router.push(`/menu?q=${encodeURIComponent(q)}`); onClose(); }} className="flex gap-2">
           <input ref={ref} value={q} onChange={(e) => setQ(e.target.value)} className="input" placeholder="Search cakes, tubs, hampers…" aria-label="Search the menu" />
           <button className="btn-primary" type="submit">Search</button>
         </form>
-        <p className="term mb-2 mt-5 px-1">{q ? "Results" : "Popular right now"}</p>
+        <p className="term mb-2 mt-5 px-1">{q ? "Results" : "Bestsellers"}</p>
         {results.length === 0 ? (
-          <p className="px-1 py-4 text-sm text-cocoa-600">No matches for “{q}”. Try “chocolate” or “rose”.</p>
+          <p className="px-1 py-4 text-sm text-cocoa-600">Nothing on the menu matches “{q}”. Try “chocolate” or “rose”.</p>
         ) : (
           <ul data-lenis-prevent className="max-h-[50vh] space-y-1 overflow-auto">
             {results.map((p) => (
               <li key={p.id}>
-                <Link href={`/menu/${p.slug}`} className="flex items-center gap-3 rounded-2xl p-2 hover:bg-white">
-                  <span className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl"><SmartImage src={p.image} alt={p.name} sizes="56px" /></span>
+                <Link href={`/menu/${p.slug}`} className="flex items-center gap-3 rounded-card p-2 hover:bg-cream-200">
+                  <span className="relative h-14 w-14 shrink-0 overflow-hidden rounded-card"><SmartImage src={p.image} alt={p.name} sizes="56px" /></span>
                   <span className="min-w-0 flex-1">
                     <span className="block truncate font-medium">{p.name}</span>
                     <span className="block truncate text-sm text-cocoa-500">from {inr(p.sizes[0].price)}</span>

@@ -6,7 +6,7 @@ import { useStore } from "@/lib/store";
 
 export function Stars({ n = 5, className = "" }: { n?: number; className?: string }) {
   return (
-    <span className={`inline-flex gap-0.5 text-gold ${className}`} role="img" aria-label={`${n} out of 5 stars`}>
+    <span className={`inline-flex gap-0.5 text-gold-600 ${className}`} role="img" aria-label={`${n} out of 5 stars`}>
       {Array.from({ length: 5 }).map((_, i) => (
         <svg key={i} viewBox="0 0 20 20" className={`h-4 w-4 ${i < n ? "fill-current" : "fill-cocoa/15"}`} aria-hidden>
           <path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6L10 15.1 4.7 18l1.1-6L1.4 7.8l6-.8L10 1.5z" />
@@ -35,18 +35,18 @@ export function OpenBadge({ className = "", dark = false }: { className?: string
   );
 }
 
-/** Inner-page opening: a working breadcrumb (the old eyebrow text names the current page), then the head, left-aligned on the brand wash. */
+/** Inner-page opening: a working breadcrumb, then the head, left-aligned on the flat icing field. */
 export function PageHero({ eyebrow, title, children }: { eyebrow?: string; title: string; children?: ReactNode }) {
   return (
-    <section className="border-b border-cocoa/10 bg-gradient-to-b from-blush-50 to-cream">
-      <div className="container-x pb-14 pt-8 sm:pb-20 sm:pt-10">
+    <section className="bg-blush-50">
+      <div className="container-x pb-12 pt-8 sm:pb-16 sm:pt-10">
         <nav aria-label="Breadcrumb">
           <ol className="crumbs">
             <li><Link href="/" className="crumb-link">Home</Link></li>
             <li aria-current="page">{eyebrow ?? title}</li>
           </ol>
         </nav>
-        <h1 className="h-display mt-10 sm:mt-14">{title}</h1>
+        <h1 className="h-display mt-10 !max-w-[16ch] sm:mt-14">{title}</h1>
         {children && <div className="lead mt-5">{children}</div>}
       </div>
     </section>

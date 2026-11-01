@@ -61,7 +61,7 @@ export default function TrackClient() {
                 );
               })}
             </ol>
-            <p className="mt-8 rounded-2xl bg-cream p-4 text-center text-sm">
+            <p className="mt-8 rounded-card bg-cream p-4 text-center text-sm">
               {order.status === "received" && "We’ve received your order and will begin baking shortly."}
               {order.status === "baking" && "Your cake is in the oven. Baked and decorated by hand."}
               {order.status === "out" && "Your order is on its way. Keep your phone handy."}

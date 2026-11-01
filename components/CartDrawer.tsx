@@ -68,7 +68,7 @@ export default function CartDrawer() {
                 <ul data-lenis-prevent className="flex-1 divide-y divide-cocoa/10 overflow-auto px-5">
                   {cart.map((i) => (
                     <li key={i.key} className="flex gap-4 py-4">
-                      <span className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl"><SmartImage src={i.image} alt={i.name} sizes="80px" /></span>
+                      <span className="relative h-20 w-20 shrink-0 overflow-hidden rounded-card"><SmartImage src={i.image} alt={i.name} sizes="80px" /></span>
                       <div className="min-w-0 flex-1">
                         <div className="flex justify-between gap-2">
                           <p className="font-medium leading-snug">{i.name}</p>

@@ -27,7 +27,7 @@ export default function CartPage() {
             <ul className="card divide-y divide-cocoa/10 px-5 sm:px-8">
               {cart.map((i) => (
                 <li key={i.key} className="flex gap-4 py-6 sm:gap-6">
-                  <span className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl sm:h-28 sm:w-28"><SmartImage src={i.image} alt={i.name} sizes="112px" /></span>
+                  <span className="relative h-24 w-24 shrink-0 overflow-hidden rounded-card sm:h-28 sm:w-28"><SmartImage src={i.image} alt={i.name} sizes="112px" /></span>
                   <div className="min-w-0 flex-1">
                     <div className="flex justify-between gap-3"><h2 className="font-serif text-xl">{i.name}</h2><p className="font-semibold tabular-nums">{inr(i.price * i.qty)}</p></div>
                     <p className="text-sm text-cocoa-500">{i.size}{i.eggless ? " · Eggless" : ""} · {inr(i.price)} each</p>

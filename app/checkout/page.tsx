@@ -133,7 +133,7 @@ export default function CheckoutPage() {
             <h2 className="font-serif text-2xl">Payment</h2>
             <div role="radiogroup" aria-label="Payment method" className="grid gap-3 sm:grid-cols-3">
               {payments.map((p) => (
-                <label key={p.id} className={`cursor-pointer rounded-2xl border p-4 transition ${pay === p.id ? "border-cocoa bg-cream ring-2 ring-cocoa/10" : "border-cocoa/20 hover:border-cocoa/50"}`}>
+                <label key={p.id} className={`cursor-pointer rounded-card border p-4 transition ${pay === p.id ? "border-cocoa bg-cream ring-2 ring-cocoa/10" : "border-cocoa/20 hover:border-cocoa/50"}`}>
                   <input type="radio" name="pay" className="sr-only" checked={pay === p.id} onChange={() => { setPay(p.id); setErrors({}); }} />
                   <span className="block font-semibold">{p.label}</span><span className="text-xs text-cocoa-500">{p.sub}</span>
                 </label>
@@ -156,7 +156,7 @@ export default function CheckoutPage() {
           <ul className="space-y-4">
             {cart.map((i) => (
               <li key={i.key} className="flex gap-3">
-                <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl"><SmartImage src={i.image} alt={i.name} sizes="64px" /></span>
+                <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-card"><SmartImage src={i.image} alt={i.name} sizes="64px" /></span>
                 <span className="min-w-0 flex-1 text-sm"><span className="block font-medium leading-snug">{i.name}</span><span className="text-cocoa-500">{i.size} × {i.qty}</span></span>
                 <span className="text-sm font-semibold tabular-nums">{inr(i.price * i.qty)}</span>
               </li>

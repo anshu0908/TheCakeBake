@@ -21,7 +21,7 @@ export default function ReviewsClient() {
           </ul>
           <a href={site.googleReviewsUrl} target="_blank" rel="noopener noreferrer" className="btn-outline btn-sm mt-6 w-full">See all reviews on Google</a>
         </div>
-        <div className="card bg-gradient-to-br from-white to-blush-50 p-6">
+        <div className="card bg-blush-50 p-6">
           <p className="term">Summary</p>
           <p className="mt-3 text-sm leading-relaxed">{reviewSummary}</p>
         </div>
@@ -45,7 +45,7 @@ export default function ReviewsClient() {
               <p className="mt-4 leading-relaxed">{r.full}</p>
               <div className="mt-4 flex flex-wrap gap-2">{r.themes.map((t) => <span key={t} className="rounded-full border border-cocoa/15 px-3 py-1 text-xs text-cocoa-600">{t}</span>)}</div>
               {r.reply && (
-                <div className="mt-5 rounded-2xl border-l-4 border-gold bg-cream p-4 text-sm">
+                <div className="mt-5 rounded-card bg-cream-200 p-4 text-sm">
                   <p className="font-semibold">Response from the owner</p>
                   <p className="mt-1 text-cocoa-600">{r.reply}</p>
                 </div>

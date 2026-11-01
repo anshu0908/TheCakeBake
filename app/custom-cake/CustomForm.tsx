@@ -188,14 +188,14 @@ export default function CustomForm() {
             {f.reference ? (
               <div className="mt-6 flex items-center gap-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={f.reference} alt="Your uploaded reference" className="h-40 w-40 rounded-2xl object-cover" />
+                <img src={f.reference} alt="Your uploaded reference" className="h-40 w-40 rounded-card object-cover" />
                 <div className="space-y-2">
                   <button type="button" className="btn-outline btn-sm" onClick={() => fileRef.current?.click()}>Change photo</button><br />
                   <button type="button" className="text-sm underline" onClick={() => up("reference", "")}>Remove</button>
                 </div>
               </div>
             ) : (
-              <label htmlFor="ref" className="mt-6 grid cursor-pointer place-items-center rounded-3xl border-2 border-dashed border-cocoa/25 bg-cream p-10 text-center transition hover:border-gold">
+              <label htmlFor="ref" className="mt-6 grid cursor-pointer place-items-center rounded-card border-2 border-dashed border-cocoa/25 bg-cream p-10 text-center transition hover:border-blush-700">
                 <svg aria-hidden="true" viewBox="0 0 24 24" className="h-8 w-8 text-cocoa-600" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.500" /></svg>
                 <span className="mt-2 font-medium">{uploading ? "Processing…" : "Tap to upload an image"}</span>
                 <span className="text-sm text-cocoa-500">JPG or PNG. Preview only; you'll also send it on WhatsApp.</span>
@@ -244,7 +244,7 @@ export default function CustomForm() {
       </div>
 
       <aside className="h-fit space-y-4 lg:sticky lg:top-28">
-        <div className="card bg-gradient-to-br from-white to-blush-50 p-6">
+        <div className="card bg-blush-50 p-6">
           <p className="term">Estimated price</p>
           {est ? (<>
             <p className="mt-2 font-serif text-4xl" aria-live="polite">{inr(est.low)} to {inr(est.high)}</p>

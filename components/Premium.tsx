@@ -7,12 +7,12 @@ import Reveal from "./Reveal";
 import SmartImage from "./SmartImage";
 import { Stars } from "./ui";
 
-/** Thin gold progress bar along the top edge while scrolling (the brand's gold-blush gradient). */
+/** Thin progress bar along the top edge while scrolling, in the logo's magenta. */
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const reduce = useReducedMotion();
   const spring = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.3 });
-  return <motion.div aria-hidden style={{ scaleX: reduce ? scrollYProgress : spring }} className="fixed inset-x-0 top-0 z-[80] h-[3px] origin-left bg-gradient-to-r from-gold via-blush to-gold" />;
+  return <motion.div aria-hidden style={{ scaleX: reduce ? scrollYProgress : spring }} className="fixed inset-x-0 top-0 z-[80] h-[3px] origin-left bg-blush" />;
 }
 
 /** The offer: one signature cake, set large, with its size, price and the add action. */

@@ -46,7 +46,7 @@ export default function LoginForm() {
   };
 
   return (
-    <section className="bg-gradient-to-b from-blush-50 to-cream">
+    <section className="bg-blush-50">
       <div className="container-x grid min-h-[calc(100svh-132px)] items-center gap-12 py-12 sm:py-16 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-5">
           <Link href="/" className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-cocoa-600 transition-colors hover:text-cocoa">

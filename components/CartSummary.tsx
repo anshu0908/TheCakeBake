@@ -12,7 +12,7 @@ export function Coupon() {
     <div>
       <label htmlFor="coupon" className="label">Coupon code</label>
       {coupon ? (
-        <div className="flex items-center justify-between rounded-xl border border-emerald-600/30 bg-emerald-50 px-4 py-3 text-sm">
+        <div className="flex items-center justify-between rounded-card border border-emerald-600/30 bg-emerald-50 px-4 py-3 text-sm">
           <span className="font-semibold text-emerald-800">{coupon} applied</span>
           <button onClick={() => { clearCoupon(); setMsg(null); notify("Coupon removed"); }} className="underline">Remove</button>
         </div>

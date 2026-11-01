@@ -69,12 +69,12 @@ export default function ProductView({ slug }: { slug: string }) {
       </nav>
       <section className="container-x grid gap-10 py-8 lg:grid-cols-2 lg:gap-16 lg:py-12">
         <div>
-          <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-cream-200">
+          <div className="relative aspect-square overflow-hidden rounded-card bg-cream-200">
             <SmartImage src={p.gallery[img] ?? p.image} alt={`${p.name}, view ${img + 1}`} priority sizes="(max-width: 1024px) 100vw, 50vw" />
           </div>
           <div className="mt-4 grid grid-cols-3 gap-3">
             {p.gallery.slice(0, 3).map((g, i) => (
-              <button key={i} onClick={() => setImg(i)} aria-label={`Show image ${i + 1}`} aria-pressed={img === i} className={`relative aspect-square overflow-hidden rounded-2xl border-2 ${img === i ? "border-cocoa" : "border-transparent"}`}>
+              <button key={i} onClick={() => setImg(i)} aria-label={`Show image ${i + 1}`} aria-pressed={img === i} className={`relative aspect-square overflow-hidden rounded-card border-2 ${img === i ? "border-cocoa" : "border-transparent"}`}>
                 <SmartImage src={g} alt={`${p.name} thumbnail ${i + 1}`} sizes="160px" />
               </button>
             ))}
@@ -161,7 +161,7 @@ export default function ProductView({ slug }: { slug: string }) {
           <h2 className="h-section mb-8">What customers say</h2>
           <div className="grid gap-5 md:grid-cols-2">
             {reviews.filter((r) => r.rating).map((r) => (
-              <figure key={r.id} className="rounded-3xl border border-cocoa/10 bg-cream p-6">
+              <figure key={r.id} className="card p-6">
                 <Stars n={r.rating!} />
                 <blockquote className="mt-3 leading-relaxed">“{r.short}”</blockquote>
                 <figcaption className="mt-3 text-sm text-cocoa-500">{r.author} · Google review</figcaption>

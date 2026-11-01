@@ -35,7 +35,7 @@ export default function OrderConfirmation({ params }: { params: Promise<{ id: st
         <ul className="divide-y divide-cocoa/10">
           {o.items.map((i) => (
             <li key={i.key} className="flex gap-4 py-4 first:pt-0">
-              <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl"><SmartImage src={i.image} alt={i.name} sizes="64px" /></span>
+              <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-card"><SmartImage src={i.image} alt={i.name} sizes="64px" /></span>
               <span className="flex-1 text-sm"><span className="block font-medium">{i.name}</span><span className="text-cocoa-500">{i.size}{i.eggless ? " · Eggless" : ""} × {i.qty}</span>{i.message && <span className="block text-cocoa-500">“{i.message}”</span>}</span>
               <span className="font-semibold tabular-nums">{inr(i.price * i.qty)}</span>
             </li>
