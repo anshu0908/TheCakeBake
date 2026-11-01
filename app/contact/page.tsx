@@ -8,25 +8,25 @@ export const metadata: Metadata = { title: "Contact", description: "Visit, call 
 export default function Contact() {
   return (
     <>
-      <PageHero eyebrow="Contact" title="Let’s talk cake">Questions, orders or custom ideas. We reply quickly.</PageHero>
+      <PageHero eyebrow="Contact" title="Contact the shop">Call, WhatsApp or send a message about an order or a custom cake.</PageHero>
 
       <section className="container-x grid gap-12 py-14 sm:py-20 lg:grid-cols-12 lg:gap-8">
         {/* Ways to reach the shop, fastest first, each with its own action */}
         <div className="lg:col-span-5">
           <h2 className="h-title !text-[1.75rem]">Reach us directly</h2>
-          <ul className="mt-6 border-t border-cocoa/15">
-            <li className="border-b border-cocoa/15 py-6">
+          <ul className="mt-6 space-y-2">
+            <li className="rounded-card bg-cream-200 p-6">
               <p className="font-serif text-2xl">WhatsApp</p>
-              <p className="mt-1 text-cocoa-600">The fastest reply. Send reference photos for custom cakes here.</p>
+              <p className="mt-1">The quickest way to reach us. Send reference photos for custom cakes here.</p>
               <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-wa btn-sm mt-4"><WhatsAppIcon className="h-4 w-4" /> Chat on WhatsApp</a>
             </li>
-            <li className="border-b border-cocoa/15 py-6">
+            <li className="rounded-card bg-cream-200 p-6">
               <p className="font-serif text-2xl">Call</p>
               <a className="mt-1 inline-block py-1 text-xl font-semibold tabular-nums transition-colors hover:text-blush-700" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
-              <p className="mt-1 text-cocoa-600">Open daily, closes {site.hours.closeLabel}.</p>
+              <p className="mt-1">Every day until {site.hours.closeLabel}.</p>
               <div className="mt-2"><OpenBadge /></div>
             </li>
-            <li className="border-b border-cocoa/15 py-6">
+            <li className="rounded-card bg-cream-200 p-6">
               <p className="font-serif text-2xl">Visit</p>
               <address className="mt-1 max-w-[40ch] not-italic text-cocoa-600">{site.address.full}</address>
               <p className="mt-1 text-sm text-cocoa-500">Plus Code: {site.plusCode}</p>

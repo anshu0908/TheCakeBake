@@ -53,7 +53,7 @@ export default function Header() {
           <span className="text-cream/85">Same-day &amp; scheduled delivery in Gurugram</span>
           <div className="flex items-center gap-5">
             <OpenBadge dark />
-            <a href={`tel:${site.phoneTel}`} className="tabular-nums transition-colors hover:text-gold-300">{site.phoneDisplay}</a>
+            <a href={`tel:${site.phoneTel}`} className="tabular-nums transition-colors hover:text-blush-200">{site.phoneDisplay}</a>
           </div>
         </div>
       </div>

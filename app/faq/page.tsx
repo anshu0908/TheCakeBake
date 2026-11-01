@@ -34,20 +34,20 @@ const groups: { topic: string; faqs: [string, string][] }[] = [
 export default function FAQ() {
   return (
     <>
-      <PageHero eyebrow="Help" title="Frequently asked questions" />
+      <PageHero eyebrow="FAQ" title="Questions people ask">Ordering, delivery, custom cakes and payment.</PageHero>
       <section className="container-x grid gap-12 py-14 sm:py-20 lg:grid-cols-12 lg:gap-8">
         <div className="space-y-14 lg:col-span-7">
           {groups.map((g) => (
             <div key={g.topic}>
               <h2 className="h-title !text-[1.75rem]">{g.topic}</h2>
-              <div className="mt-4 border-t border-cocoa/15">
+              <div className="mt-4 space-y-2">
                 {g.faqs.map(([q, a]) => (
-                  <details key={q} className="group border-b border-cocoa/15">
+                  <details key={q} className="group rounded-card bg-cream-200 px-5 open:bg-cream-300/60">
                     <summary className="flex min-h-[44px] cursor-pointer list-none items-center justify-between gap-6 py-5 font-serif text-xl transition-colors hover:text-blush-700 [&::-webkit-details-marker]:hidden">
                       {q}
-                      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-cocoa/20 text-lg leading-none text-cocoa-600 transition-transform duration-200 group-open:rotate-45" aria-hidden>+</span>
+                      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-cream text-lg leading-none transition-transform duration-200 group-open:rotate-45" aria-hidden>+</span>
                     </summary>
-                    <p className="max-w-[60ch] pb-6 leading-relaxed text-cocoa-600">{a}</p>
+                    <p className="max-w-[60ch] pb-6 leading-relaxed">{a}</p>
                   </details>
                 ))}
               </div>
@@ -55,9 +55,9 @@ export default function FAQ() {
           ))}
         </div>
 
-        <aside className="h-fit rounded-card bg-cream-200/70 p-6 sm:p-8 lg:sticky lg:top-32 lg:col-span-4 lg:col-start-9">
+        <aside className="h-fit rounded-card bg-blush-50 p-6 sm:p-8 lg:sticky lg:top-32 lg:col-span-4 lg:col-start-9">
           <h2 className="h-title">Still have a question?</h2>
-          <p className="mt-3 text-cocoa-600">Message us with your date and what you have in mind, and we’ll help you choose.</p>
+          <p className="mt-3">Message us with your date and what you have in mind.</p>
           <div className="mt-6 flex flex-col gap-3">
             <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-wa"><WhatsAppIcon className="h-4 w-4" /> Ask on WhatsApp</a>
             <a href={`tel:${site.phoneTel}`} className="btn-outline">Call {site.phoneDisplay}</a>

@@ -23,6 +23,7 @@ Click **Admin Login** in the header (or the mobile menu, or the footer), which o
 
 | What | File |
 | --- | --- |
+| Colours, type, spacing and component rules (read before changing the look) | `DESIGN.md`, values in `app/tokens.css` |
 | Logo files (`logo.png` full lockup, `logo-mark.png` without the tagline, the supplied original) | `public/brand/` |
 | Name, phone, WhatsApp, address, hours, delivery threshold and fee, coupon codes, social links, footer credit, admin login | `config/site.ts` |
 | Opening time (**placeholder 9:00 am**, not confirmed by the client) | `config/site.ts` → `hours.open` |

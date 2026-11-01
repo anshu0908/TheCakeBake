@@ -131,7 +131,7 @@ export default function CustomForm() {
         <ol className="mb-8 flex gap-1.5" aria-label="Progress">
           {stepNames.map((n, i) => (
             <li key={n} className="flex-1" aria-current={i === step ? "step" : undefined}>
-              <span className={`block h-1.5 rounded-full ${i <= step ? "bg-gold" : "bg-cocoa/10"}`} />
+              <span className={`block h-1.5 rounded-full ${i <= step ? "bg-blush-700" : "bg-cocoa/10"}`} />
               <span className="sr-only">{n}</span>
             </li>
           ))}
@@ -184,7 +184,7 @@ export default function CustomForm() {
           </>)}
           {step === 5 && (<>
             <h2 className="font-serif text-3xl">Add a reference photo</h2>
-            <p className="lead mt-2">Optional, but it helps us match your vision.</p>
+            <p className="lead mt-2">Optional. A photo is the easiest way to show us the design.</p>
             <input ref={fileRef} type="file" accept="image/*" className="sr-only" id="ref" onChange={(e) => onFile(e.target.files?.[0])} />
             {f.reference ? (
               <div className="mt-6 flex items-center gap-4">
@@ -255,7 +255,7 @@ export default function CustomForm() {
         </div>
         <ul className="card space-y-1.5 p-6 text-sm">
           {[["Occasion", f.occasion], ["Flavour", f.flavour], ["Shape", f.shape], ["Date", f.date ? fmtDate(f.date) : ""]].map(([k, v]) => (
-            <li key={k} className="flex justify-between gap-3"><span className="text-cocoa-500">{k}</span><span className="text-right font-medium">{v || "—"}</span></li>
+            <li key={k} className="flex justify-between gap-3"><span className="text-cocoa-500">{k}</span><span className="text-right font-medium">{v || "Not chosen"}</span></li>
           ))}
         </ul>
       </aside>

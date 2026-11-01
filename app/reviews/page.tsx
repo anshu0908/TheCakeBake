@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Reviews", description: "What custome
 export default function Page() {
   return (
     <>
-      <PageHero eyebrow="Reviews" title="What customers say">From Google reviews, honest and unedited in spirit.</PageHero>
+      <PageHero eyebrow="Reviews" title="What customers say">Shortened excerpts from Google reviews of the shop.</PageHero>
       <ReviewsClient />
     </>
   );

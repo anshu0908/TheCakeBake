@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function MenuPage() {
   return (
     <>
-      <PageHero eyebrow="The menu" title="Cakes & Desserts">Baked fresh daily. Filter by category, flavour and more.</PageHero>
+      <PageHero eyebrow="Menu" title="The menu">Cakes, cupcakes, cake tubs, dry cakes and hampers, baked fresh each day.</PageHero>
       <Suspense fallback={<div className="container-x py-20 text-center text-cocoa-500">Loading menu…</div>}>
         <MenuClient />
       </Suspense>

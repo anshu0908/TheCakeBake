@@ -56,14 +56,14 @@ export default function CartDrawer() {
               <div className="flex flex-1 flex-col items-center justify-center gap-4 p-8 text-center">
                 <div className="grid h-20 w-20 place-items-center rounded-full bg-blush-100 text-blush-700"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-9 w-9" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20h16M5 20v-6a2 2 0 012-2h10a2 2 0 012 2v6M5 15.5c1.200 1 2.300 1 3.500 0s2.300-1 3.500 0 2.300 1 3.500 0 2.300-1 3.500 0M12 12V8M12 5.500a1 1 0 01-1-1c0-.700 1-2 1-2s1 1.300 1 2a1 1 0 01-1 1z" /></svg></div>
                 <p className="font-serif text-2xl">Your cart is empty</p>
-                <p className="text-cocoa-600">Add something sweet. Our bestsellers are a good place to start.</p>
+                <p className="text-cocoa-600">Nothing here yet. The bestsellers are a good place to start.</p>
                 <Link href="/menu" onClick={() => setCartOpen(false)} className="btn-primary">Browse the menu</Link>
               </div>
             ) : (
               <>
                 <div className="border-b border-cocoa/10 px-5 py-3 text-sm">
-                  {remaining > 0 ? <p>Add <strong>{inr(remaining)}</strong> more for free delivery</p> : <p className="font-medium text-emerald-700">You’ve unlocked free delivery</p>}
-                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-cocoa/10"><div className="h-full origin-left rounded-full bg-gold transition-transform duration-500" style={{ transform: `scaleX(${pct / 100})` }} /></div>
+                  {remaining > 0 ? <p>Add <strong>{inr(remaining)}</strong> more for free delivery</p> : <p className="font-medium text-emerald-700">Delivery is free on this order</p>}
+                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-cocoa/10"><div className="h-full origin-left rounded-full bg-blush-700 transition-transform duration-500" style={{ transform: `scaleX(${pct / 100})` }} /></div>
                 </div>
                 <ul data-lenis-prevent className="flex-1 divide-y divide-cocoa/10 overflow-auto px-5">
                   {cart.map((i) => (

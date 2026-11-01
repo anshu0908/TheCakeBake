@@ -83,7 +83,7 @@ export default function ProductView({ slug }: { slug: string }) {
 
         <div>
           <div className="flex flex-wrap gap-2">
-            {p.tags.map((t) => <span key={t} className="rounded-full bg-gold-300/40 px-3 py-1 text-xs font-semibold text-gold-700">{t}</span>)}
+            {p.tags.map((t) => <span key={t} className="rounded-full bg-blush-50 px-3 py-1 text-xs font-semibold text-blush-700">{t}</span>)}
             {p.eggless && <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800">Eggless available</span>}
           </div>
           <h1 className="h-display mt-3 text-4xl sm:text-5xl">{p.name}</h1>

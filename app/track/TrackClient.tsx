@@ -54,8 +54,8 @@ export default function TrackClient() {
                 const done = i <= idx;
                 return (
                   <li key={s.id} className="relative text-center" aria-current={i === idx ? "step" : undefined}>
-                    {i > 0 && <span className={`absolute right-1/2 top-5 h-0.5 w-full ${i <= idx ? "bg-gold" : "bg-cocoa/15"}`} aria-hidden />}
-                    <span className={`relative z-10 mx-auto grid h-10 w-10 place-items-center rounded-full border-2 text-sm font-bold ${done ? "border-gold bg-gold text-white" : "border-cocoa/20 bg-white text-cocoa-400"}`}>{done ? "✓" : i + 1}</span>
+                    {i > 0 && <span className={`absolute right-1/2 top-5 h-0.5 w-full ${i <= idx ? "bg-blush-700" : "bg-cocoa/15"}`} aria-hidden />}
+                    <span className={`relative z-10 mx-auto grid h-10 w-10 place-items-center rounded-full border-2 text-sm font-bold ${done ? "border-blush-700 bg-blush-700 text-white" : "border-cocoa/20 bg-white text-cocoa-400"}`}>{done ? "✓" : i + 1}</span>
                     <span className={`mt-3 block text-xs font-medium sm:text-sm ${done ? "text-cocoa" : "text-cocoa-400"}`}>{s.label}</span>
                   </li>
                 );
@@ -83,7 +83,7 @@ export default function TrackClient() {
             <ol className="mt-5 border-t border-cocoa/15">
               {statusSteps.map((s, i) => (
                 <li key={s.id} className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 border-b border-cocoa/15 py-4">
-                  <span className="font-serif text-2xl leading-none text-gold-700 tabular-nums" aria-hidden="true">{i + 1}</span>
+                  <span className="font-serif text-2xl leading-none text-blush-700 tabular-nums" aria-hidden="true">{i + 1}</span>
                   <span><span className="block font-semibold">{s.label}</span><span className="mt-1 block text-sm text-cocoa-600">{stageNotes[s.id]}</span></span>
                 </li>
               ))}

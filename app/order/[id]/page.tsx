@@ -28,7 +28,7 @@ export default function OrderConfirmation({ params }: { params: Promise<{ id: st
         <div className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-emerald-100 text-4xl text-emerald-700" aria-hidden>✓</div>
         <h1 className="h-display mx-auto mt-6 text-4xl sm:text-5xl">Order confirmed</h1>
         <p className="lead mx-auto mt-3">Thank you, {o.customer.name.split(" ")[0]}. Your order is in. We’ll start baking soon.</p>
-        <p className="mx-auto mt-6 inline-block rounded-full border border-gold/40 bg-white px-6 py-3 font-semibold">Order ID: {o.id}</p>
+        <p className="mx-auto mt-6 inline-block rounded-full bg-cream-200 px-6 py-3 font-semibold">Order ID: {o.id}</p>
       </div>
 
       <div className="card mt-10 space-y-6 p-6 sm:p-8">

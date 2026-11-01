@@ -16,7 +16,7 @@ export default function ReviewsClient() {
           <p className="mt-1 text-sm text-cocoa-600">{site.reviewCount.toLocaleString("en-IN")} Google reviews</p>
           <ul className="mt-5 space-y-2" aria-label="Rating breakdown">
             {ratingBreakdown.map((r) => (
-              <li key={r.stars} className="flex items-center gap-3 text-sm"><span className="w-3">{r.stars}</span><span className="h-2 flex-1 overflow-hidden rounded-full bg-cocoa/10"><span className="block h-full bg-gold" style={{ width: `${r.pct}%` }} /></span></li>
+              <li key={r.stars} className="flex items-center gap-3 text-sm"><span className="w-3">{r.stars}</span><span className="h-2 flex-1 overflow-hidden rounded-full bg-cocoa/10"><span className="block h-full bg-gold-600" style={{ width: `${r.pct}%` }} /></span></li>
             ))}
           </ul>
           <a href={site.googleReviewsUrl} target="_blank" rel="noopener noreferrer" className="btn-outline btn-sm mt-6 w-full">See all reviews on Google</a>
