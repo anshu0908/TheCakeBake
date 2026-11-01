@@ -9,6 +9,7 @@ import CartDrawer from "@/components/CartDrawer";
 import { Toaster, WhatsAppIcon } from "@/components/ui";
 import { ScrollProgress } from "@/components/Premium";
 import SmoothScroll from "@/components/SmoothScroll";
+import Preloader from "@/components/Preloader";
 import { reviews } from "@/data/reviews";
 
 // Young Serif for display: a heavy, round shop-sign serif with one weight. Hanken Grotesk for text, prices and controls.
@@ -67,6 +68,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
       <body>
+        {/* First in <body> so the loader is up before anything below it paints. */}
+        <Preloader />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <StoreProvider>
           <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-cocoa focus:px-4 focus:py-2 focus:text-cream">Skip to content</a>

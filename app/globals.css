@@ -111,3 +111,29 @@
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
+
+/* Loader (components/Preloader.tsx). A cocoa field, the morphing shape, the count and a slim bar.
+   Shown once per session; slides up with the strong ease-out token. */
+html.cb-loading { overflow: hidden; }
+html.cb-loading .rise { animation-play-state: paused; } /* the hero settles after the reveal, not behind the overlay */
+.cb-loader { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; background: rgb(var(--rgb-cocoa)); color: rgb(var(--rgb-cream));
+  padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+  transition: transform 700ms var(--ease-out); will-change: transform; }
+.cb-loader.is-out { transform: translateY(-100%); }
+.cb-stack { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.cb-name { font-family: var(--font-display); font-size: clamp(1.25rem, 0.9rem + 1.2vw, 1.75rem); line-height: 1; }
+.cb-shape { width: clamp(132px, 30vw, 196px); height: auto; margin-top: clamp(24px, 4vh, 40px); overflow: visible; }
+.cb-stem, .cb-leaf { fill: none; stroke: rgb(var(--rgb-cream)); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 420ms var(--ease-out); }
+.cb-leaf { stroke-width: 4; transition-delay: 140ms; }
+.is-cherry .cb-stem, .is-cherry .cb-leaf { stroke-dashoffset: 0; }
+.cb-count { margin-top: clamp(16px, 3vh, 28px); font-family: var(--font-body); font-weight: 600; font-size: clamp(3.25rem, 2rem + 6vw, 6rem); line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.cb-bar { width: min(240px, 60vw); height: 3px; margin-top: 20px; overflow: hidden; border-radius: var(--radius-pill); background: rgb(var(--rgb-cream) / 0.16); }
+.cb-bar > i { display: block; height: 100%; background: rgb(var(--rgb-blush)); transform: scaleX(0); transform-origin: left; }
+/* Reduced motion: no morph (the script pauses it on the circle), a gentle pulse, and a fade instead of the slide.
+   The !important and the extra specificity beat the global reduced-motion kill switch above. */
+@keyframes cb-pulse { 50% { opacity: 0.55; } }
+@media (prefers-reduced-motion: reduce) {
+  .cb-loader .cb-body { animation: cb-pulse 1.6s ease-in-out infinite !important; }
+  .cb-loader.cb-loader { transition: opacity 400ms ease !important; }
+  .cb-loader.is-out { transform: none; opacity: 0; }
+}
