@@ -22,9 +22,9 @@ export function Hero() {
     <section className="bg-cream">
       <div className="container-x grid gap-10 pb-16 pt-8 sm:pb-20 sm:pt-12 lg:min-h-[calc(100svh-132px)] lg:grid-cols-12 lg:gap-8 lg:pb-16 lg:pt-10">
         <div className="lg:col-span-6 lg:self-center">
-          <h1 className="h-display rise">Cakes from Sector 7</h1>
-          <p className="lead rise mt-8 !max-w-[44ch] !text-cocoa" style={{ "--i": 1 } as React.CSSProperties}>
-            Celebration cakes, cupcakes, cake tubs and hampers from our shop on Circular Road, Gurugram. We deliver across the city, the same day or on the date you pick.
+          <h1 className="h-display rise">Baking your ideas to life</h1>
+          <p className="lead rise mt-8 !max-w-[46ch] !text-cocoa" style={{ "--i": 1 } as React.CSSProperties}>
+            The Cake Bake is a cake shop on Circular Road, Sector 7, Gurugram. We make celebration cakes, cupcakes, cake tubs and hampers, and deliver across the city the same day or on the date you pick.
           </p>
           <div className="rise mt-10 flex flex-col gap-3 sm:flex-row" style={{ "--i": 2 } as React.CSSProperties}>
             <Link href="/menu" className="btn-primary">Order a cake</Link>
