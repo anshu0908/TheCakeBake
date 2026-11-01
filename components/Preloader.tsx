@@ -4,9 +4,10 @@ import { site } from "@/config/site";
  * First-visit loader. Plain inline JS, not a React component: it has to be on screen before React's
  * bundle has downloaded, and it must track the page's own loading (readyState, eager images, fonts,
  * window load). It builds the overlay itself, so React never hydrates or patches it, and without
- * JavaScript nothing is shown. One SVG path morphs (SMIL, so Safari too) through six shapes with
- * the same point count: cake top, cake box, slice, heart, star, frosting. When loading is done it
- * stops on the circle, grows the logo's cherry stem, then slides up. Shown once per browser session.
+ * JavaScript nothing is shown. One hairline SVG path, drawn like the logo's monoline strokes, morphs
+ * (SMIL, so Safari too) through six shapes with the same point count: cake top, cake box, slice, heart,
+ * star, frosting. When loading is done it stops on the circle, which fills with the logo's magenta and
+ * grows a stem to become the cherry, then the overlay lifts. Shown once per browser session.
  * Styles live in app/globals.css under "Loader"; every colour, font and curve comes from tokens.
  */
 const code = `(function () {
@@ -32,11 +33,11 @@ const code = `(function () {
     polar(function (a) { return R * (0.88 + 0.12 * Math.cos(8 * (a + Math.PI / 2))); })
   ].map(path);
   function tok(n) { return "rgb(" + css.getPropertyValue("--rgb-" + n).trim().split(/\\s+/).join(",") + ")"; }
-  var fills = ["blush", "cream", "blush-200", "blush-600", "cream", "blush-200"].map(tok);
+  var inks = ["blush-200", "cream", "cream", "blush-200", "cream", "cream"].map(tok); // a faint pink breath, never a colour change
   var ease = (css.getPropertyValue("--ease-in-out").match(/[\\d.]+/g) || [0.65, 0, 0.35, 1]).join(" ");
   var dv = [], fv = [], kt = [], ks = [];
-  for (var k = 0; k < 6; k++) { dv.push(shapes[k], shapes[k]); fv.push(fills[k], fills[k]); kt.push(k * STEP / T, (k * STEP + HOLD) / T); ks.push("0 0 1 1", ease); }
-  dv.push(shapes[0]); fv.push(fills[0]); kt.push(1);
+  for (var k = 0; k < 6; k++) { dv.push(shapes[k], shapes[k]); fv.push(inks[k], inks[k]); kt.push(k * STEP / T, (k * STEP + HOLD) / T); ks.push("0 0 1 1", ease); }
+  dv.push(shapes[0]); fv.push(inks[0]); kt.push(1);
   function anim(attr, values) { return '<animate attributeName="' + attr + '" dur="' + T + 's" repeatCount="indefinite" calcMode="spline" values="' + values.join(";") +
     '" keyTimes="' + kt.map(function (x) { return x.toFixed(4); }).join(";") + '" keySplines="' + ks.join(";") + '"/>'; }
 
@@ -45,10 +46,12 @@ const code = `(function () {
   el.setAttribute("role", "progressbar"); el.setAttribute("aria-label", "Loading " + ${JSON.stringify(site.name)});
   el.setAttribute("aria-valuemin", "0"); el.setAttribute("aria-valuemax", "100"); el.setAttribute("aria-valuenow", "0");
   el.setAttribute("data-lenis-prevent", "");
-  el.innerHTML = '<div class="cb-stack"><p class="cb-name">' + ${JSON.stringify(site.name)} + '</p>' +
-    '<svg class="cb-shape" viewBox="-110 -135 220 245" aria-hidden="true"><path class="cb-body" fill="' + fills[0] + '" d="' + shapes[0] + '">' + anim("d", dv) + anim("fill", fv) + '</path>' +
-    '<path class="cb-stem" pathLength="1" d="M0 -78C4 -100 14 -112 32 -122"/><path class="cb-leaf" pathLength="1" d="M24 -117C34 -131 52 -130 60 -119C47 -110 33 -110 24 -117Z"/></svg>' +
-    '<p class="cb-count" aria-hidden="true">0%</p><div class="cb-bar"><i></i></div></div>';
+  var line = ' vector-effect="non-scaling-stroke"';
+  el.innerHTML = '<div class="cb-stack">' +
+    '<svg class="cb-shape" viewBox="-110 -135 220 245" aria-hidden="true"><path class="cb-body"' + line + ' stroke="' + inks[0] + '" d="' + shapes[0] + '">' + anim("d", dv) + anim("stroke", fv) + '</path>' +
+    '<path class="cb-stem" pathLength="1"' + line + ' d="M0 -80C4 -100 14 -112 32 -122"/><path class="cb-leaf" pathLength="1"' + line + ' d="M24 -117C34 -131 52 -130 60 -119C47 -110 33 -110 24 -117Z"/></svg>' +
+    '<p class="cb-name">' + ${JSON.stringify(site.name)} + '</p></div>' +
+    '<div class="cb-foot"><div class="cb-row"><span>Baking your ideas to life</span><span class="cb-count" aria-hidden="true">0%</span></div><div class="cb-bar"><i></i></div></div>';
   d.body.appendChild(el);
   root.classList.add("cb-loading");
 
@@ -84,8 +87,8 @@ const code = `(function () {
       setTimeout(function () {
         el.classList.add("is-out"); root.classList.remove("cb-loading");
         try { sessionStorage.setItem("cb-loaded", "1"); } catch (e) {}
-        setTimeout(function () { el.remove(); }, 900);
-      }, 650);
+        setTimeout(function () { el.remove(); }, 1000);
+      }, 900); // let the cherry fill and the leaf finish drawing before the lift
     }, wait * 1000);
   }
   requestAnimationFrame(frame);
