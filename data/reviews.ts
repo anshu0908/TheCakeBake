@@ -67,4 +67,4 @@ export const ratingBreakdown = [
 ];
 
 export const reviewSummary =
-  "Customers describe delicious, fresh, soft cakes with beautiful customized designs that often exceed expectations, plus timely delivery and a smooth, professional ordering process. Some mention the cakes are priced on the higher side, but say quality and taste justify it.";
+  "Reviewers say the custom designs come out as asked, the cakes are soft and fresh, and delivery is on time. Some find the prices high but say the taste makes up for it.";

@@ -44,7 +44,8 @@ export default function CustomForm() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [f, setF] = useState({
     occasion: occasions.includes(sp.get("occasion") ?? "") ? sp.get("occasion")! : "",
-    flavour: "", size: "", tiers: 1, shape: "Round", theme: "", message: "", reference: "" as string, date: "", slot: "", name: "", phone: "", email: "",
+    // The home page's message cake hands over what the cake should say.
+    flavour: "", size: "", tiers: 1, shape: "Round", theme: "", message: (sp.get("message") ?? "").slice(0, 50), reference: "" as string, date: "", slot: "", name: "", phone: "", email: "",
   });
   const up = <K extends keyof typeof f>(k: K, v: (typeof f)[K]) => { setF((x) => ({ ...x, [k]: v })); setErrors({}); };
 

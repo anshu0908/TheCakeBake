@@ -85,11 +85,11 @@ export interface Enquiry {
 }
 
 export const categories: { id: CategoryId; label: string; blurb: string }[] = [
-  { id: "cakes", label: "Cakes", blurb: "Signature celebration cakes" },
-  { id: "cupcakes", label: "Cupcakes & Pastries", blurb: "Single-serve indulgences" },
-  { id: "tubs", label: "Cake Tubs", blurb: "Layered desserts in a tub" },
-  { id: "dry", label: "Dry Cakes", blurb: "Tea-time & festive loaves" },
-  { id: "hampers", label: "Hampers & Gifting", blurb: "Curated gift boxes" },
+  { id: "cakes", label: "Cakes", blurb: "Celebration cakes in 500 g, 1 kg and 2 kg" },
+  { id: "cupcakes", label: "Cupcakes & pastries", blurb: "Cupcakes, pastries, brownies and macarons" },
+  { id: "tubs", label: "Cake tubs", blurb: "Sponge and cream layered in a tub" },
+  { id: "dry", label: "Dry cakes", blurb: "Fruit and plum loaves for tea time and festivals" },
+  { id: "hampers", label: "Hampers & gifting", blurb: "Gift boxes of cake and treats" },
 ];
 
 export const statusSteps: { id: OrderStatus; label: string }[] = [
