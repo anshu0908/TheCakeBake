@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, MotionConfig, motion } from "framer-motion";
+import { usePresence } from "@/lib/usePresence";
 import { site } from "@/config/site";
 import { useStore } from "@/lib/store";
 import { inr } from "@/lib/utils";
@@ -34,6 +34,7 @@ export default function Header() {
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const sheet = usePresence(menu, 300);
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 24);
@@ -100,13 +101,10 @@ export default function Header() {
         </div>
       </header>
 
-      <AnimatePresence>
-        {menu && (
-          <MotionConfig reducedMotion="user">
-          <motion.div className="fixed inset-0 z-50 xl:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      {sheet.mounted && (
+          <div className={`fixed inset-0 z-50 transition-opacity duration-300 ease-out xl:hidden ${sheet.shown ? "opacity-100" : "opacity-0"}`}>
             <button className="absolute inset-0 bg-cocoa/50" onClick={() => setMenu(false)} aria-label="Close menu" />
-            <motion.nav data-lenis-prevent aria-label="Mobile" className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col overflow-y-auto bg-cream p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-lift"
-              initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "tween", duration: 0.3 }}>
+            <nav data-lenis-prevent aria-label="Mobile" className={`absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col overflow-y-auto bg-cream p-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-lift transition-transform duration-300 ease-out ${sheet.shown ? "translate-x-0" : "translate-x-full"}`}>
               <div className="mb-6 flex items-center justify-between">
                 <Image src="/brand/logo-mark.png" alt={site.name} width={549} height={495} className="h-12 w-auto" />
                 <button onClick={() => setMenu(false)} className="grid h-11 w-11 place-items-center rounded-full transition-colors hover:bg-cocoa/5" aria-label="Close menu">
@@ -123,11 +121,9 @@ export default function Header() {
               <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-wa w-full"><WhatsAppIcon /> Order on WhatsApp</a>
               <Link href="/admin/login" className="btn-outline btn-sm mt-3 w-full">Admin Login</Link>
               <div className="mt-4 text-center"><OpenBadge /></div>
-            </motion.nav>
-          </motion.div>
-          </MotionConfig>
-        )}
-      </AnimatePresence>
+            </nav>
+          </div>
+      )}
 
       {search && <SearchOverlay onClose={() => setSearch(false)} />}
     </>

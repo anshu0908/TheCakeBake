@@ -38,7 +38,8 @@ function CakeTop({ message, occasion }: { message: string; occasion: string }) {
       <circle cx="200" cy="200" r="194" fill="none" stroke="rgb(var(--rgb-cream) / 0.28)" strokeWidth="1.5" />
       <circle cx="200" cy="200" r="168" fill="rgb(var(--rgb-cream))" />
       {piping.map((a) => (
-        <circle key={a} cx={200 + Math.cos(a) * 152} cy={200 + Math.sin(a) * 152} r="7.5" fill="none" stroke="rgb(var(--rgb-blush))" strokeWidth="2" />
+        // Rounded so server and browser print the same number (float formatting differs in the last digit).
+        <circle key={a} cx={(200 + Math.cos(a) * 152).toFixed(2)} cy={(200 + Math.sin(a) * 152).toFixed(2)} r="7.5" fill="none" stroke="rgb(var(--rgb-blush))" strokeWidth="2" />
       ))}
       {/* The cherry from the logo, sitting at twelve o'clock */}
       <path d="M200 98 C 203 84, 210 76, 222 70" fill="none" stroke="rgb(var(--rgb-cocoa))" strokeWidth="2" strokeLinecap="round" />
@@ -69,7 +70,7 @@ export default function MessageCake() {
       {/* Phone order: heading, the cake, then the form, so the drawing stays in view while you type. */}
       <div className="container-x grid gap-10 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-0">
         <div className="lg:col-span-6 lg:row-start-1">
-          <h2 id="custom-head" className="h-section text-cream">Baking your ideas to life</h2>
+          <h2 id="custom-head" className="h-section text-cream">Tell us about your cake</h2>
           <p className="lead mt-6 !text-cream/85">
             Send us a photo, a theme or a few words. We agree the design, flavour and price with you on WhatsApp, then bake and decorate the cake by hand and deliver it on your date.
           </p>

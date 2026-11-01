@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { usePresence } from "@/lib/usePresence";
 import { site } from "@/config/site";
 import { useStore } from "@/lib/store";
 import { cartWhatsAppMessage, inr, waLink } from "@/lib/utils";
@@ -23,6 +23,7 @@ export function QtyControl({ qty, onChange, small = false }: { qty: number; onCh
 export default function CartDrawer() {
   const { cartOpen, setCartOpen, cart, setQty, removeFromCart, totals, placeWhatsAppOrder, ready } = useStore();
   const closeRef = useRef<HTMLButtonElement>(null);
+  const { mounted, shown } = usePresence(cartOpen, 320);
 
   useEffect(() => {
     if (!cartOpen) return;
@@ -37,12 +38,11 @@ export default function CartDrawer() {
   const pct = Math.min(100, ((totals.subtotal - totals.discount) / site.freeDeliveryAbove) * 100);
 
   return (
-    <AnimatePresence>
-      {cartOpen && (
-        <motion.div className="fixed inset-0 z-[55]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} role="dialog" aria-modal="true" aria-label="Shopping cart">
+    <>
+      {mounted && (
+        <div className={`fixed inset-0 z-[55] transition-opacity duration-300 ease-out ${shown ? "opacity-100" : "opacity-0"}`} role="dialog" aria-modal="true" aria-label="Shopping cart">
           <button className="absolute inset-0 bg-cocoa/50" onClick={() => setCartOpen(false)} aria-label="Close cart" tabIndex={-1} />
-          <motion.aside className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-cream shadow-lift"
-            initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "tween", duration: 0.32, ease: "easeOut" }}>
+          <aside className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-cream shadow-lift transition-transform duration-300 ease-out ${shown ? "translate-x-0" : "translate-x-full"}`}>
             <div className="flex items-center justify-between border-b border-cocoa/10 px-5 py-4">
               <h2 className="font-serif text-2xl">Your cart</h2>
               <button ref={closeRef} onClick={() => setCartOpen(false)} className="grid h-11 w-11 place-items-center rounded-full hover:bg-cocoa/5" aria-label="Close cart">
@@ -95,9 +95,9 @@ export default function CartDrawer() {
                 </div>
               </>
             )}
-          </motion.aside>
-        </motion.div>
+          </aside>
+        </div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

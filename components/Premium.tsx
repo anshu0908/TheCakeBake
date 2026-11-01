@@ -1,17 +1,13 @@
 "use client";
 import Link from "next/link";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useStore } from "@/lib/store";
 import { inr } from "@/lib/utils";
 import Reveal from "./Reveal";
 import SmartImage from "./SmartImage";
 
-/** Thin progress bar along the top edge while scrolling, in the logo's magenta. */
+/** Thin progress bar along the top edge while scrolling, in the logo's magenta. Pure CSS (scroll-driven animation); browsers without it simply don't show the bar. */
 export function ScrollProgress() {
-  const { scrollYProgress } = useScroll();
-  const reduce = useReducedMotion();
-  const spring = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.3 });
-  return <motion.div aria-hidden style={{ scaleX: reduce ? scrollYProgress : spring }} className="fixed inset-x-0 top-0 z-[80] h-[3px] origin-left bg-blush" />;
+  return <div aria-hidden className="scroll-progress fixed inset-x-0 top-0 z-[80] h-[3px] origin-left bg-blush" />;
 }
 
 /** The offer: one signature cake, set large on the icing field, with its size, price and the add action. */
