@@ -188,7 +188,7 @@ export default function CustomForm() {
             {f.reference ? (
               <div className="mt-6 flex items-center gap-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={f.reference} alt="Your uploaded reference" className="h-40 w-40 rounded-2xl object-cover shadow-soft" />
+                <img src={f.reference} alt="Your uploaded reference" className="h-40 w-40 rounded-2xl object-cover" />
                 <div className="space-y-2">
                   <button type="button" className="btn-outline btn-sm" onClick={() => fileRef.current?.click()}>Change photo</button><br />
                   <button type="button" className="text-sm underline" onClick={() => up("reference", "")}>Remove</button>

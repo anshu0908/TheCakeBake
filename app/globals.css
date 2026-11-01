@@ -1,24 +1,4 @@
-/* Hallmark · shape: catalogue · genre: editorial · theme: brand (logo spec 2026-10-29, .hallmark/brand-spec.md) · redesign: full · job: buy
- * paper: oklch(97.5% 0.01 80) #FBF6EE · accent: oklch(52% 0.13 5) #A24A5D · display: Fraunces (SOFT 100, weight 360) · body: DM Sans · hero: Stage · nav: banner over a bar, the logo mark left · footer: the full logo on a round paper plate over the links · signature: the chocolate drip cake under the bowed top edge of the logo's tiers
- * axes: light/high-contrast-serif/chromatic-rose · posture: Restrained · contrast: pass · fold: pass · v2.0.0 */
-/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V3 · weakest: V, the brand pins cream paper and a high-contrast serif, so variety comes from composition: a bento of categories, an occasion index with one swapping photograph, a rail of the kitchen instead of a nine-photo wall */
-/* Hallmark · pass 2 · palette kept: the logo's magenta (#D83896) and charcoal (#3C3C3C) sit in the blush and cocoa families already here; the logo carries its own magenta */
-/* Hallmark · reworded "Your idea, baked to the last detail" to "Baking your ideas to life" · the logo's own tagline, a line only this bakery can say */
-/* Hallmark · dropped /admin, u, p, #u, #p, setu(e.target.value), setp(v), if (!login(u, form 1 (http://localhost:3000/admin) · the inline sign-in form moved to /admin/login (app/admin/login/LoginForm.tsx), which signs into the same demo session; /admin keeps the dashboard and redirects signed-out visitors to the login */
-/* Hallmark · reworded "Admin sign in" to "Admin Login" · the brief names the screen Admin Login, matching the header button that opens it */
-/* Hallmark · dropped StatsBand · its third figure ("4 ways to order") was derived, not given; the rating and review count now sit with the reviews */
-/* Hallmark · dropped Marquee · a looping strip repeating the care facts, which now stand once as rows */
-/* Hallmark · dropped the hero's floating five-star chip and tilted second photo · decoration around the one picture that carries the hero */
-/* Hallmark · dropped {s.n} · not a link: the to={s.n} prop of the stats counter removed with StatsBand */
-/* Hallmark · reworded "Something for every occasion" to "Shop by category" · 54: the eyebrow's plain label became the head, the old head is now its line */
-/* Hallmark · reworded "Planning something bigger?" to "Corporate & bulk orders" and "Thank you, name!" to "Order confirmed" · 54: the eyebrow became the head, the old head opens the line */
-/* Hallmark · waive 44c · the rating, delivery and hours facts sit under the actions inside the text block; centred on the whole block the cake is within 10px · the hero's own facts list */
-/* Hallmark · waive 49b · product-name links in a two-across phone grid, two lines at most · shortening them would rename the menu's cakes */
-/* Hallmark · waive 79 · inner pages open on a Banner posture: breadcrumb, head and line, with the filters, form or content starting above the fold · the menu and custom-cake routes */
-/* Hallmark · waive 81 · the flagged boxes are cocoa gradient overlays above category photographs that were still lazy-loading · a scrolled render shows every cake photo in place */
-/* Hallmark · waive 83 · the photographs are the bakery's own range, a catalogue of cakes for sale · on the menu route the products are the page, and the homepage sits at 37% */
-/* Hallmark · dismissed 49 · See all reviews on Google is a .btn, which sets white-space: nowrap in this stylesheet */
-/* Hallmark · dismissed 70 · orders, enquiries and custom requests are written to localStorage and read back by /admin and /track, as the README documents for this demo */
+/* Component classes for The Cake Bake. Values come from app/tokens.css; the rules behind them are in DESIGN.md. */
 @import "./tokens.css";
 @import "./base.css";
 
@@ -33,28 +13,28 @@
   .lenis.lenis-stopped { overflow: hidden; }
   [data-lenis-prevent] { overscroll-behavior: contain; }
   body { overflow-x: clip; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); font-size: var(--text-md); line-height: 1.55; -webkit-font-smoothing: antialiased; font-synthesis: none; }
-  h1, h2, h3, .font-serif { font-variation-settings: var(--display-axes); font-weight: var(--display-weight); }
   h1, h2, h3 { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--tracking-display); overflow-wrap: break-word; min-width: 0; text-wrap: balance; }
   p { text-wrap: pretty; }
-  :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; border-radius: 6px; }
-  ::selection { background: rgb(var(--rgb-blush-200)); color: var(--color-ink); }
-  .on-dark { --color-focus: rgb(var(--rgb-gold-300)); }
+  :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; border-radius: 4px; }
+  ::selection { background: rgb(var(--rgb-blush-100)); color: var(--color-ink); }
+  .on-dark { --color-focus: rgb(var(--rgb-blush-200)); }
+  .font-serif { font-weight: var(--display-weight); }
 }
 
 @layer components {
   .container-x { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
   .section { padding-block: var(--section-gap-s); }
-  /* The logo's tiers are drawn as thin, slightly bowed lines: two photographs (hero, signature) take that bowed top edge. */
-  .tier-top { border-radius: 50% 50% var(--radius-card) var(--radius-card) / 2.75rem 2.75rem var(--radius-card) var(--radius-card); }
+  /* The logo's tiers are thin, slightly bowed lines: the hero and signature photographs take that bowed top edge. Nowhere else. */
+  .tier-top { border-radius: 50% 50% var(--radius-card) var(--radius-card) / 2.5rem 2.5rem var(--radius-card) var(--radius-card); }
   .section-l { padding-block: var(--section-gap); }
 
-  .h-display { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-display); line-height: 1.02; letter-spacing: -0.025em; color: var(--color-ink); max-width: 14ch; }
-  .h-section { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-section); line-height: 1.08; letter-spacing: -0.02em; max-width: 22ch; }
-  .h-title { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-title); line-height: 1.2; letter-spacing: -0.01em; }
+  .h-display { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-display); line-height: 0.95; letter-spacing: -0.025em; color: var(--color-ink); max-width: 14ch; }
+  .h-section { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-section); line-height: 1.02; letter-spacing: -0.02em; max-width: 20ch; }
+  .h-title { font-family: var(--font-display); font-weight: var(--display-weight); font-size: var(--text-title); line-height: 1.15; letter-spacing: -0.01em; }
   .lead { font-size: var(--text-lead); line-height: 1.5; color: var(--color-ink-2); max-width: 52ch; }
   .meta { font-size: var(--text-sm); color: var(--color-ink-2); }
   .term { font-size: var(--text-sm); font-weight: 600; color: var(--color-ink-2); }
-  .on-dark .term { color: rgb(var(--rgb-gold-300)); }
+  .on-dark .term { color: rgb(var(--rgb-blush-200)); }
   .rule-t { border-top: var(--rule-hair) solid var(--color-rule); }
 
   .btn { position: relative; display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: var(--space-xs); white-space: nowrap; border-radius: var(--radius-pill); padding: 0 1.75rem; font-size: 0.9375rem; font-weight: 600; line-height: 1;
@@ -62,14 +42,14 @@
   .btn:active { transform: scale(0.98); }
   .btn:disabled, .btn[aria-disabled="true"] { pointer-events: none; cursor: not-allowed; opacity: 0.55; }
   .btn-primary { @apply btn bg-cocoa text-cream hover:bg-cocoa-700; }
-  .btn-blush { @apply btn bg-blush-700 text-cream hover:bg-cocoa; }
-  .btn-outline { @apply btn border border-cocoa/30 bg-transparent text-cocoa hover:border-cocoa hover:bg-cocoa hover:text-cream; }
+  .btn-blush { @apply btn bg-blush-700 text-white hover:bg-cocoa; }
+  .btn-outline { @apply btn border-2 border-cocoa bg-transparent text-cocoa hover:bg-cocoa hover:text-cream; }
   .btn-light { @apply btn bg-cream text-cocoa hover:bg-white; }
-  .btn-outline-light { @apply btn border border-cream/40 text-cream hover:border-cream hover:bg-cream/10; }
+  .btn-outline-light { @apply btn border-2 border-cream text-cream hover:bg-cream hover:text-cocoa; }
   .btn-wa { @apply btn bg-whatsapp text-white hover:bg-whatsapp-700; }
   .btn-sm { min-height: 44px; padding: 0 1.25rem; font-size: var(--text-sm); }
 
-  .link { font-weight: 600; text-decoration-line: underline; text-decoration-color: rgb(var(--rgb-cocoa) / 0.3); text-underline-offset: 0.3em; transition: color var(--dur-short) var(--ease-out), text-decoration-color var(--dur-short) var(--ease-out); }
+  .link { font-weight: 600; text-decoration-line: underline; text-decoration-thickness: 2px; text-decoration-color: rgb(var(--rgb-blush) / 0.5); text-underline-offset: 0.3em; transition: color var(--dur-short) var(--ease-out), text-decoration-color var(--dur-short) var(--ease-out); }
   .link:hover { color: var(--color-accent); text-decoration-color: currentColor; }
 
   .label { @apply mb-1.5 block text-sm font-medium text-cocoa; }
@@ -86,17 +66,18 @@
   .input-error { border-color: var(--color-error); }
   .field-error { margin-top: 0.375rem; font-size: 13px; font-weight: 500; color: var(--color-error); }
 
-  .chip { @apply inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-full border border-cocoa/25 bg-white px-4 py-2 text-sm font-medium text-cocoa;
+  .chip { @apply inline-flex min-h-[44px] items-center gap-1.5 whitespace-nowrap rounded-full border border-transparent bg-cream-200 px-4 py-2 text-sm font-semibold text-cocoa;
     transition: border-color var(--dur-short) var(--ease-out), background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out); }
-  .chip:hover { border-color: var(--color-ink); }
+  .chip:hover { background: rgb(var(--rgb-cream-300)); }
   .chip:active { transform: scale(0.98); }
   .chip:disabled { cursor: not-allowed; opacity: 0.55; }
   .chip-on { @apply border-cocoa bg-cocoa text-cream; }
-  .card { @apply rounded-card border border-cocoa/10 bg-white; }
+  /* Panels sit one tone off the page; no border, no shadow. */
+  .card { @apply rounded-card bg-cream-200; }
 
   /* Breadcrumb that opens every inner page */
   .crumbs { display: flex; flex-wrap: wrap; gap: var(--space-xs); font-size: var(--text-sm); color: var(--color-ink-2); }
-  .crumbs li + li::before { content: "/"; margin-right: var(--space-xs); color: rgb(var(--rgb-cocoa) / 0.35); }
+  .crumbs li + li::before { content: "/"; margin-right: var(--space-xs); color: rgb(var(--rgb-cocoa) / 0.45); }
   /* Text-sized links with a 44px tap area that doesn't change the line box */
   .crumb-link, .tap-link { display: inline-block; padding-block: 0.75rem; margin-block: -0.75rem; transition: color var(--dur-short) var(--ease-out); }
   .crumb-link:hover { color: var(--color-accent); }

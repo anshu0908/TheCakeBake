@@ -69,7 +69,7 @@ export default function ProductView({ slug }: { slug: string }) {
       </nav>
       <section className="container-x grid gap-10 py-8 lg:grid-cols-2 lg:gap-16 lg:py-12">
         <div>
-          <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-cream-200 shadow-soft">
+          <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-cream-200">
             <SmartImage src={p.gallery[img] ?? p.image} alt={`${p.name}, view ${img + 1}`} priority sizes="(max-width: 1024px) 100vw, 50vw" />
           </div>
           <div className="mt-4 grid grid-cols-3 gap-3">

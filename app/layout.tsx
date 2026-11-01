@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Fraunces } from "next/font/google";
+import { Hanken_Grotesk, Young_Serif } from "next/font/google";
 import "./globals.css";
 import { site } from "@/config/site";
 import { StoreProvider } from "@/lib/store";
@@ -11,25 +11,25 @@ import { ScrollProgress } from "@/components/Premium";
 import SmoothScroll from "@/components/SmoothScroll";
 import { reviews } from "@/data/reviews";
 
-// Fraunces with its SOFT axis: rounded terminals that sit beside the logo's hand lettering without imitating it.
-const serif = Fraunces({ subsets: ["latin"], variable: "--font-serif", display: "swap", axes: ["SOFT", "WONK", "opsz"] });
-const sans = DM_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+// Young Serif for display: a heavy, round shop-sign serif with one weight. Hanken Grotesk for text, prices and controls.
+const serif = Young_Serif({ subsets: ["latin"], weight: "400", variable: "--font-serif", display: "swap" });
+const sans = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 
 const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://the-cake-bake-demo.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(base),
-  title: { default: `${site.name} | Custom Cakes & Patisserie in Gurugram`, template: `%s | ${site.name}` },
-  description: "Fresh, beautifully designed cakes, cupcakes, cake tubs and gifting hampers in Sector 7, Gurugram. Custom cakes, same-day and scheduled delivery.",
+  title: { default: `${site.name} | Custom cakes in Sector 7, Gurugram`, template: `%s | ${site.name}` },
+  description: "Cake shop on Circular Road, Sector 7, Gurugram. Celebration and custom cakes, cupcakes, cake tubs, dry cakes and hampers, delivered across Gurugram the same day or on your date.",
   openGraph: {
     type: "website", siteName: site.name, locale: "en_IN",
-    title: `${site.name} | Custom Cakes & Patisserie in Gurugram`,
-    description: "Cakes made to be remembered. Custom designs, fresh daily, delivered across Gurugram.",
+    title: `${site.name} | Custom cakes in Sector 7, Gurugram`,
+    description: "Order a cake from the menu or get one made to your design. Delivered across Gurugram.",
     images: [{ url: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=75", width: 1200, height: 800, alt: "Chocolate cake from The Cake Bake" }],
   },
   twitter: { card: "summary_large_image" },
 };
-export const viewport: Viewport = { themeColor: "#FBF6EE", width: "device-width", initialScale: 1, viewportFit: "cover" };
+export const viewport: Viewport = { themeColor: "#FFFBF8", width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -78,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CartDrawer />
           <Toaster />
           <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"
-            className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-30 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-white shadow-lift transition-colors duration-200 hover:bg-whatsapp-700 sm:right-6">
+            className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-30 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-white shadow-lift transition-[background-color,transform] duration-200 hover:bg-whatsapp-700 active:scale-95 sm:right-6">
             <WhatsAppIcon className="h-7 w-7" />
           </a>
         </StoreProvider>

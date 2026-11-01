@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-// Every colour resolves to a token in app/tokens.css (the brand's own values, unchanged).
+// Every colour resolves to a token in app/tokens.css. blush is the logo's magenta ramp; see DESIGN.md.
 const c = (name: string) => `rgb(var(--rgb-${name}) / <alpha-value>)`;
 
 const config: Config = {
@@ -22,7 +22,6 @@ const config: Config = {
       borderRadius: { card: "var(--radius-card)", field: "var(--radius-field)" },
       transitionTimingFunction: { out: "var(--ease-out)" },
       boxShadow: {
-        soft: "var(--shadow-card)",
         lift: "var(--shadow-overlay)",
       },
     },
